@@ -14,11 +14,11 @@ tokens = (
 t_H1     = r'\# '
 t_H2     = r'\#\# '
 t_H3     = r'\#\#\# '
-t_STRONG = r'\*\*'
-t_EM     = r'\*'
+t_STRONG = r'__|\*\*'
+t_EM     = r'_|\*'
 
 def t_TEXT(t):
-    r'[_a-zA-Z0-9\,\. \']+'
+    r'[a-zA-Z0-9\,\. \']+'
     t.value = str(t.value)
     return t
 
@@ -108,9 +108,9 @@ def p_factor_term(p):
     if (len(p) == 2):
         p[0] = str(p[1])
     elif (len(p) == 6):
-        if p[2] == '**':
+        if p[2] == '**' or p[2] == '__':
             p[0] = str(p[1]) + '<strong>' + str(p[3]) + '</strong>' + str(p[5])
-        if p[2] == '*':
+        if p[2] == '*'  or p[2] == '_' :
             p[0] = str(p[1]) + '<em>' + str(p[3]) + '</em>' + str(p[5])
         
 
