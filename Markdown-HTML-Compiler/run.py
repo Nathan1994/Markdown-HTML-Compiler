@@ -7,7 +7,7 @@
 import sys
 
 tokens = (
-    'H1','H2','H3', 'CR', 'TEXT'
+    'H1','H2','H3','P', 'CR', 'TEXT'
     )
 
 # Tokens
@@ -16,7 +16,7 @@ t_H2 = r'\#\# '
 t_H3 = r'\#\#\# '
 
 def t_TEXT(t):
-    r'[_a-zA-Z0-9 ]+'
+    r'[_a-zA-Z0-9 \,\.]+'
     t.value = str(t.value)
     return t
 
@@ -57,13 +57,21 @@ def p_state(p):
 def p_exp_cr(p):
     '''expression : H1 factor
                   | H2 factor
-                  | H3 factor'''
-    if p[1] == '#':
-        p[0] = '<h1>' + str(p[2]) + '</h1>'
-    elif p[1] == '##':
-        p[0] = '<h2>' + str(p[2]) + '</h2>'
-    elif p[1] == '###': 
-        p[0] = '<h3>' + str(p[2]) + '</h3>'
+                  | H3 factor
+                  | factor'''
+    # print("printttttttttt")
+    # print(len(p))
+    # for x in p:
+    #     print(x)
+    if (len(p) == 2):
+        p[0] = '<p>' + str(p[1]) + '</p>'
+    elif (len(p) == 3):
+        if p[1] == '#':
+            p[0] = '<h1>' + str(p[2]) + '</h1>'
+        elif p[1] == '##':
+            p[0] = '<h2>' + str(p[2]) + '</h2>'
+        elif p[1] == '###': 
+            p[0] = '<h3>' + str(p[2]) + '</h3>'
 
 
 def p_factor_text(p):

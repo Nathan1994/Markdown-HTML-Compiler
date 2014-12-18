@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xe6\\\xfb\xa6\xec/\xc8\xf6\xe7\x18\xd7\xee\xaa\x82\xf2\x14'
+_lr_signature = '\xef\x02\xc6\x823\x8e<\x9c\xfe\xf2\xbf\xb3jH\x0b^'
     
-_lr_action_items = {'H2':([0,11,],[2,2,]),'H3':([0,11,],[3,3,]),'H1':([0,11,],[4,4,]),'TEXT':([2,3,4,],[7,7,7,]),'CR':([5,6,7,8,9,10,12,],[11,-2,-7,-5,-6,-4,-3,]),'$end':([1,5,6,7,8,9,10,12,],[0,-1,-2,-7,-5,-6,-4,-3,]),}
+_lr_action_items = {'H2':([0,12,],[2,2,]),'H3':([0,12,],[3,3,]),'H1':([0,12,],[4,4,]),'TEXT':([0,2,3,4,12,],[5,5,5,5,5,]),'CR':([5,6,7,8,9,10,11,13,],[-8,12,-7,-2,-5,-6,-4,-3,]),'$end':([1,5,6,7,8,9,10,11,13,],[0,-8,-1,-7,-2,-5,-6,-4,-3,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'body':([0,],[1,]),'expression':([0,11,],[6,12,]),'statement':([0,],[5,]),'factor':([2,3,4,],[8,9,10,]),}
+_lr_goto_items = {'body':([0,],[1,]),'expression':([0,12,],[8,13,]),'statement':([0,],[6,]),'factor':([0,2,3,4,12,],[7,9,10,11,7,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -32,5 +32,6 @@ _lr_productions = [
   ('expression -> H1 factor','expression',2,'p_exp_cr','run.py',58),
   ('expression -> H2 factor','expression',2,'p_exp_cr','run.py',59),
   ('expression -> H3 factor','expression',2,'p_exp_cr','run.py',60),
-  ('factor -> TEXT','factor',1,'p_factor_text','run.py',70),
+  ('expression -> factor','expression',1,'p_exp_cr','run.py',61),
+  ('factor -> TEXT','factor',1,'p_factor_text','run.py',74),
 ]
