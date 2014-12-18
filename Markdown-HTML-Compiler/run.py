@@ -7,15 +7,16 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','STRONG','EM', 'CR', 'TEXT'
+    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT'
     )
 
 # Tokens
 t_H1     = r'\# '
 t_H2     = r'\#\# '
 t_H3     = r'\#\#\# '
-t_STRONG = r'__|\*\*'
-t_EM     = r'_|\*'
+t_STRONG = r'__ |\*\* '
+t_EM     = r'_ |\* '
+t_HR     = r'\-\-\-|\*\*\*'
 
 def t_TEXT(t):
     r'[a-zA-Z0-9\,\. \']+'
@@ -72,6 +73,7 @@ def p_exp_cr(p):
     '''expression : H1 factor
                   | H2 factor
                   | H3 factor
+                  | HR
                   |    factor'''
 
 
@@ -81,7 +83,11 @@ def p_exp_cr(p):
     # print("printtttttt")
 
     if (len(p) == 2):
-        p[0] = '<p>' + str(p[1]) + '</p>'
+        if p[1] == '---' or p[1] == '***':
+            p[0] = '<hr></hr>'
+        else:
+            p[0] = '<p>' + str(p[1]) + '</p>'
+
     elif (len(p) == 3):
         if p[1] == '#':
             p[0] = '<h1>' + str(p[2]) + '</h1>'
@@ -89,6 +95,7 @@ def p_exp_cr(p):
             p[0] = '<h2>' + str(p[2]) + '</h2>'
         elif p[1] == '###': 
             p[0] = '<h3>' + str(p[2]) + '</h3>'
+        
 
 def p_factor_term(p):
     '''factor : factor STRONG term STRONG term
@@ -99,11 +106,6 @@ def p_factor_term(p):
     # for x in p:
     #     print(x)
     # print("printtttttt")
-
-    # if p[1] == '**':
-    #     p[0] = '<strong>' + str(p[2]) + '</strong>'
-    # else :
-    # p[0] = p[1]
 
     if (len(p) == 2):
         p[0] = str(p[1])
