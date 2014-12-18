@@ -7,16 +7,18 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','P', 'CR', 'TEXT'
+    'H1','H2','H3','STRONG','EM', 'CR', 'TEXT'
     )
 
 # Tokens
-t_H1 = r'\# '
-t_H2 = r'\#\# '
-t_H3 = r'\#\#\# '
+t_H1     = r'\# '
+t_H2     = r'\#\# '
+t_H3     = r'\#\#\# '
+t_STRONG = r'\*\*'
+t_EM     = r'\*'
 
 def t_TEXT(t):
-    r'[_a-zA-Z0-9 \,\.]+'
+    r'[_a-zA-Z0-9\,\. \']+'
     t.value = str(t.value)
     return t
 
@@ -44,13 +46,25 @@ names = {}
 
 def p_body(p):
     '''body : statement'''
+
+    # print("printtttttt")
+    # for x in p:
+    #     print(x)
+    # print("printtttttt")
+
     print '<body>' + p[1] + '</body>'
 
 def p_state(p):
     '''statement : expression
                  | statement CR expression'''
+
+    # print("printtttttt")
+    # for x in p:
+    #     print(x)
+    # print("printtttttt")
+
     if (len(p)==2):
-        p[0] = p[1]
+        p[0] = str(p[1])
     elif (len(p) == 4):
         p[0] = str(p[1]) + '<br>' + str(p[3])
 
@@ -58,11 +72,14 @@ def p_exp_cr(p):
     '''expression : H1 factor
                   | H2 factor
                   | H3 factor
-                  | factor'''
-    # print("printttttttttt")
-    # print(len(p))
+                  |    factor'''
+
+
+    # print("printtttttt")
     # for x in p:
     #     print(x)
+    # print("printtttttt")
+
     if (len(p) == 2):
         p[0] = '<p>' + str(p[1]) + '</p>'
     elif (len(p) == 3):
@@ -73,9 +90,36 @@ def p_exp_cr(p):
         elif p[1] == '###': 
             p[0] = '<h3>' + str(p[2]) + '</h3>'
 
+def p_factor_term(p):
+    '''factor : factor STRONG term STRONG term
+              | factor EM term EM term
+              | term'''
+    
+    # print("printtttttt")
+    # for x in p:
+    #     print(x)
+    # print("printtttttt")
 
-def p_factor_text(p):
-    "factor : TEXT"
+    # if p[1] == '**':
+    #     p[0] = '<strong>' + str(p[2]) + '</strong>'
+    # else :
+    # p[0] = p[1]
+
+    if (len(p) == 2):
+        p[0] = str(p[1])
+    elif (len(p) == 6):
+        if p[2] == '**':
+            p[0] = str(p[1]) + '<strong>' + str(p[3]) + '</strong>' + str(p[5])
+        if p[2] == '*':
+            p[0] = str(p[1]) + '<em>' + str(p[3]) + '</em>' + str(p[5])
+        
+
+def p_term_text(p):
+    '''term : TEXT'''
+    # print("printtttttt")
+    # for x in p:
+    #     print(x)
+    # print("printtttttt")
     p[0] = p[1]
 
 def p_error(p):
