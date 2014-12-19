@@ -23,7 +23,7 @@ def t_TEXT(t):
     t.value = str(t.value)
     return t
 
-t_ignore = " \t"
+# t_ignore = " \t"
 
 def t_CR(t):
     r'\n+'
@@ -67,7 +67,7 @@ def p_state(p):
     if (len(p)==2):
         p[0] = str(p[1])
     elif (len(p) == 4):
-        p[0] = str(p[1]) + '<br>' + str(p[3])
+        p[0] = str(p[1]) + str(p[3])
 
 def p_exp_cr(p):
     '''expression : H1 factor
