@@ -57,17 +57,22 @@ def p_body(p):
 
 def p_state(p):
     '''statement : expression
-                 | statement CR expression'''
+                 | statement CR expression
+                 | statement CR
+                 | CR'''
 
-    # print("printtttttt")
-    # for x in p:
-    #     print(x)
-    # print("printtttttt")
+    print("printtttttt")
+    for x in p:
+        print(x)
+    print("printtttttt")
 
+    
     if (len(p)==2):
         p[0] = str(p[1])
     elif (len(p) == 4):
         p[0] = str(p[1]) + str(p[3])
+    elif (len(p) == 3):
+        p[0] = str(p[1]) + '<br>'
 
 def p_exp_cr(p):
     '''expression : H1 factor
