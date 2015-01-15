@@ -7,7 +7,7 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT'
+    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR'
     )
 
 # Tokens
@@ -16,7 +16,9 @@ t_H2     = r'\#\# '
 t_H3     = r'\#\#\# '
 t_STRONG = r'__ |\*\* '
 t_EM     = r'_ |\* '
-t_HR     = r'\-\-\-|\*\*\*'
+t_HR     = r'\-\-\-|\*\ \*\ \*'
+t_BR     = r'==='
+
 
 def t_TEXT(t):
     r'[a-zA-Z0-9\,\. \']+'
@@ -52,7 +54,10 @@ def p_body(p):
     # for x in p:
     #     print(x)
     # print("printtttttt")
-
+    htmlDom = '<body>' + p[1] + '</body>'
+    f = file('output.html','w')
+    f.write(htmlDom)
+    f.close()
     print '<body>' + p[1] + '</body>'
 
 def p_state(p):
@@ -61,10 +66,10 @@ def p_state(p):
                  | statement CR
                  | CR'''
 
-    print("printtttttt")
-    for x in p:
-        print(x)
-    print("printtttttt")
+    # print("printtttttt")
+    # for x in p:
+    #     print(x)
+    # print("printtttttt")
 
     
     if (len(p)==2):
@@ -79,6 +84,7 @@ def p_exp_cr(p):
                   | H2 factor
                   | H3 factor
                   | HR
+                  | BR
                   |    factor'''
 
 
@@ -87,9 +93,13 @@ def p_exp_cr(p):
     #     print(x)
     # print("printtttttt")
 
+    # if (len(p) == 7):
+    #     p[0] = '<hr></hr>'
     if (len(p) == 2):
-        if p[1] == '---' or p[1] == '***':
+        if p[1] == '---' or p[1] == '* * *':
             p[0] = '<hr></hr>'
+        elif p[1] == '===':
+            p[0] = '<h1></h1>'
         else:
             p[0] = '<p>' + str(p[1]) + '</p>'
 
@@ -139,5 +149,5 @@ import ply.yacc as yacc
 yacc.yacc()
 
 if __name__ == '__main__':
-    filename = '../TestDocument/test copy.md'
+    filename = '../TestDocument/test01.md'
     yacc.parse(open(filename).read())

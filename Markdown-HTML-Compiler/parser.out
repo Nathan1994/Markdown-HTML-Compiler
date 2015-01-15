@@ -12,31 +12,33 @@ Rule 6     expression -> H1 factor
 Rule 7     expression -> H2 factor
 Rule 8     expression -> H3 factor
 Rule 9     expression -> HR
-Rule 10    expression -> factor
-Rule 11    factor -> factor STRONG term STRONG term
-Rule 12    factor -> factor EM term EM term
-Rule 13    factor -> term
-Rule 14    term -> TEXT
+Rule 10    expression -> BR
+Rule 11    expression -> factor
+Rule 12    factor -> factor STRONG term STRONG term
+Rule 13    factor -> factor EM term EM term
+Rule 14    factor -> term
+Rule 15    term -> TEXT
 
 Terminals, with rules where they appear
 
+BR                   : 10
 CR                   : 3 4 5
-EM                   : 12 12
+EM                   : 13 13
 H1                   : 6
 H2                   : 7
 H3                   : 8
 HR                   : 9
-STRONG               : 11 11
-TEXT                 : 14
+STRONG               : 12 12
+TEXT                 : 15
 error                : 
 
 Nonterminals, with rules where they appear
 
 body                 : 0
 expression           : 2 3
-factor               : 6 7 8 10 11 12
+factor               : 6 7 8 11 12 13
 statement            : 1 3 4
-term                 : 11 11 12 12 13
+term                 : 12 12 13 13 14
 
 Parsing method: LALR
 
@@ -52,24 +54,26 @@ state 0
     (7) expression -> . H2 factor
     (8) expression -> . H3 factor
     (9) expression -> . HR
-    (10) expression -> . factor
-    (11) factor -> . factor STRONG term STRONG term
-    (12) factor -> . factor EM term EM term
-    (13) factor -> . term
-    (14) term -> . TEXT
+    (10) expression -> . BR
+    (11) expression -> . factor
+    (12) factor -> . factor STRONG term STRONG term
+    (13) factor -> . factor EM term EM term
+    (14) factor -> . term
+    (15) term -> . TEXT
 
-    CR              shift and go to state 10
-    H1              shift and go to state 5
-    H2              shift and go to state 3
-    H3              shift and go to state 4
-    HR              shift and go to state 6
-    TEXT            shift and go to state 7
+    CR              shift and go to state 11
+    H1              shift and go to state 6
+    H2              shift and go to state 4
+    H3              shift and go to state 5
+    HR              shift and go to state 7
+    BR              shift and go to state 3
+    TEXT            shift and go to state 8
 
     body                           shift and go to state 1
     term                           shift and go to state 2
-    expression                     shift and go to state 11
-    statement                      shift and go to state 8
-    factor                         shift and go to state 9
+    expression                     shift and go to state 12
+    statement                      shift and go to state 9
+    factor                         shift and go to state 10
 
 state 1
 
@@ -79,54 +83,62 @@ state 1
 
 state 2
 
-    (13) factor -> term .
+    (14) factor -> term .
 
-    STRONG          reduce using rule 13 (factor -> term .)
-    EM              reduce using rule 13 (factor -> term .)
-    CR              reduce using rule 13 (factor -> term .)
-    $end            reduce using rule 13 (factor -> term .)
+    STRONG          reduce using rule 14 (factor -> term .)
+    EM              reduce using rule 14 (factor -> term .)
+    CR              reduce using rule 14 (factor -> term .)
+    $end            reduce using rule 14 (factor -> term .)
 
 
 state 3
 
-    (7) expression -> H2 . factor
-    (11) factor -> . factor STRONG term STRONG term
-    (12) factor -> . factor EM term EM term
-    (13) factor -> . term
-    (14) term -> . TEXT
+    (10) expression -> BR .
 
-    TEXT            shift and go to state 7
+    CR              reduce using rule 10 (expression -> BR .)
+    $end            reduce using rule 10 (expression -> BR .)
 
-    term                           shift and go to state 2
-    factor                         shift and go to state 12
 
 state 4
 
-    (8) expression -> H3 . factor
-    (11) factor -> . factor STRONG term STRONG term
-    (12) factor -> . factor EM term EM term
-    (13) factor -> . term
-    (14) term -> . TEXT
+    (7) expression -> H2 . factor
+    (12) factor -> . factor STRONG term STRONG term
+    (13) factor -> . factor EM term EM term
+    (14) factor -> . term
+    (15) term -> . TEXT
 
-    TEXT            shift and go to state 7
+    TEXT            shift and go to state 8
 
     term                           shift and go to state 2
     factor                         shift and go to state 13
 
 state 5
 
-    (6) expression -> H1 . factor
-    (11) factor -> . factor STRONG term STRONG term
-    (12) factor -> . factor EM term EM term
-    (13) factor -> . term
-    (14) term -> . TEXT
+    (8) expression -> H3 . factor
+    (12) factor -> . factor STRONG term STRONG term
+    (13) factor -> . factor EM term EM term
+    (14) factor -> . term
+    (15) term -> . TEXT
 
-    TEXT            shift and go to state 7
+    TEXT            shift and go to state 8
 
     term                           shift and go to state 2
     factor                         shift and go to state 14
 
 state 6
+
+    (6) expression -> H1 . factor
+    (12) factor -> . factor STRONG term STRONG term
+    (13) factor -> . factor EM term EM term
+    (14) factor -> . term
+    (15) term -> . TEXT
+
+    TEXT            shift and go to state 8
+
+    term                           shift and go to state 2
+    factor                         shift and go to state 15
+
+state 7
 
     (9) expression -> HR .
 
@@ -134,39 +146,39 @@ state 6
     $end            reduce using rule 9 (expression -> HR .)
 
 
-state 7
-
-    (14) term -> TEXT .
-
-    STRONG          reduce using rule 14 (term -> TEXT .)
-    EM              reduce using rule 14 (term -> TEXT .)
-    CR              reduce using rule 14 (term -> TEXT .)
-    $end            reduce using rule 14 (term -> TEXT .)
-
-
 state 8
+
+    (15) term -> TEXT .
+
+    STRONG          reduce using rule 15 (term -> TEXT .)
+    EM              reduce using rule 15 (term -> TEXT .)
+    CR              reduce using rule 15 (term -> TEXT .)
+    $end            reduce using rule 15 (term -> TEXT .)
+
+
+state 9
 
     (1) body -> statement .
     (3) statement -> statement . CR expression
     (4) statement -> statement . CR
 
     $end            reduce using rule 1 (body -> statement .)
-    CR              shift and go to state 15
-
-
-state 9
-
-    (10) expression -> factor .
-    (11) factor -> factor . STRONG term STRONG term
-    (12) factor -> factor . EM term EM term
-
-    CR              reduce using rule 10 (expression -> factor .)
-    $end            reduce using rule 10 (expression -> factor .)
-    STRONG          shift and go to state 17
-    EM              shift and go to state 16
+    CR              shift and go to state 16
 
 
 state 10
+
+    (11) expression -> factor .
+    (12) factor -> factor . STRONG term STRONG term
+    (13) factor -> factor . EM term EM term
+
+    CR              reduce using rule 11 (expression -> factor .)
+    $end            reduce using rule 11 (expression -> factor .)
+    STRONG          shift and go to state 18
+    EM              shift and go to state 17
+
+
+state 11
 
     (5) statement -> CR .
 
@@ -174,7 +186,7 @@ state 10
     $end            reduce using rule 5 (statement -> CR .)
 
 
-state 11
+state 12
 
     (2) statement -> expression .
 
@@ -182,43 +194,43 @@ state 11
     $end            reduce using rule 2 (statement -> expression .)
 
 
-state 12
+state 13
 
     (7) expression -> H2 factor .
-    (11) factor -> factor . STRONG term STRONG term
-    (12) factor -> factor . EM term EM term
+    (12) factor -> factor . STRONG term STRONG term
+    (13) factor -> factor . EM term EM term
 
     CR              reduce using rule 7 (expression -> H2 factor .)
     $end            reduce using rule 7 (expression -> H2 factor .)
-    STRONG          shift and go to state 17
-    EM              shift and go to state 16
-
-
-state 13
-
-    (8) expression -> H3 factor .
-    (11) factor -> factor . STRONG term STRONG term
-    (12) factor -> factor . EM term EM term
-
-    CR              reduce using rule 8 (expression -> H3 factor .)
-    $end            reduce using rule 8 (expression -> H3 factor .)
-    STRONG          shift and go to state 17
-    EM              shift and go to state 16
+    STRONG          shift and go to state 18
+    EM              shift and go to state 17
 
 
 state 14
 
-    (6) expression -> H1 factor .
-    (11) factor -> factor . STRONG term STRONG term
-    (12) factor -> factor . EM term EM term
+    (8) expression -> H3 factor .
+    (12) factor -> factor . STRONG term STRONG term
+    (13) factor -> factor . EM term EM term
 
-    CR              reduce using rule 6 (expression -> H1 factor .)
-    $end            reduce using rule 6 (expression -> H1 factor .)
-    STRONG          shift and go to state 17
-    EM              shift and go to state 16
+    CR              reduce using rule 8 (expression -> H3 factor .)
+    $end            reduce using rule 8 (expression -> H3 factor .)
+    STRONG          shift and go to state 18
+    EM              shift and go to state 17
 
 
 state 15
+
+    (6) expression -> H1 factor .
+    (12) factor -> factor . STRONG term STRONG term
+    (13) factor -> factor . EM term EM term
+
+    CR              reduce using rule 6 (expression -> H1 factor .)
+    $end            reduce using rule 6 (expression -> H1 factor .)
+    STRONG          shift and go to state 18
+    EM              shift and go to state 17
+
+
+state 16
 
     (3) statement -> statement CR . expression
     (4) statement -> statement CR .
@@ -226,43 +238,45 @@ state 15
     (7) expression -> . H2 factor
     (8) expression -> . H3 factor
     (9) expression -> . HR
-    (10) expression -> . factor
-    (11) factor -> . factor STRONG term STRONG term
-    (12) factor -> . factor EM term EM term
-    (13) factor -> . term
-    (14) term -> . TEXT
+    (10) expression -> . BR
+    (11) expression -> . factor
+    (12) factor -> . factor STRONG term STRONG term
+    (13) factor -> . factor EM term EM term
+    (14) factor -> . term
+    (15) term -> . TEXT
 
     CR              reduce using rule 4 (statement -> statement CR .)
     $end            reduce using rule 4 (statement -> statement CR .)
-    H1              shift and go to state 5
-    H2              shift and go to state 3
-    H3              shift and go to state 4
-    HR              shift and go to state 6
-    TEXT            shift and go to state 7
+    H1              shift and go to state 6
+    H2              shift and go to state 4
+    H3              shift and go to state 5
+    HR              shift and go to state 7
+    BR              shift and go to state 3
+    TEXT            shift and go to state 8
 
     term                           shift and go to state 2
-    expression                     shift and go to state 18
-    factor                         shift and go to state 9
-
-state 16
-
-    (12) factor -> factor EM . term EM term
-    (14) term -> . TEXT
-
-    TEXT            shift and go to state 7
-
-    term                           shift and go to state 19
+    expression                     shift and go to state 19
+    factor                         shift and go to state 10
 
 state 17
 
-    (11) factor -> factor STRONG . term STRONG term
-    (14) term -> . TEXT
+    (13) factor -> factor EM . term EM term
+    (15) term -> . TEXT
 
-    TEXT            shift and go to state 7
+    TEXT            shift and go to state 8
 
     term                           shift and go to state 20
 
 state 18
+
+    (12) factor -> factor STRONG . term STRONG term
+    (15) term -> . TEXT
+
+    TEXT            shift and go to state 8
+
+    term                           shift and go to state 21
+
+state 19
 
     (3) statement -> statement CR expression .
 
@@ -270,54 +284,54 @@ state 18
     $end            reduce using rule 3 (statement -> statement CR expression .)
 
 
-state 19
-
-    (12) factor -> factor EM term . EM term
-
-    EM              shift and go to state 21
-
-
 state 20
 
-    (11) factor -> factor STRONG term . STRONG term
+    (13) factor -> factor EM term . EM term
 
-    STRONG          shift and go to state 22
+    EM              shift and go to state 22
 
 
 state 21
 
-    (12) factor -> factor EM term EM . term
-    (14) term -> . TEXT
+    (12) factor -> factor STRONG term . STRONG term
 
-    TEXT            shift and go to state 7
+    STRONG          shift and go to state 23
 
-    term                           shift and go to state 23
 
 state 22
 
-    (11) factor -> factor STRONG term STRONG . term
-    (14) term -> . TEXT
+    (13) factor -> factor EM term EM . term
+    (15) term -> . TEXT
 
-    TEXT            shift and go to state 7
+    TEXT            shift and go to state 8
 
     term                           shift and go to state 24
 
 state 23
 
-    (12) factor -> factor EM term EM term .
+    (12) factor -> factor STRONG term STRONG . term
+    (15) term -> . TEXT
 
-    STRONG          reduce using rule 12 (factor -> factor EM term EM term .)
-    EM              reduce using rule 12 (factor -> factor EM term EM term .)
-    CR              reduce using rule 12 (factor -> factor EM term EM term .)
-    $end            reduce using rule 12 (factor -> factor EM term EM term .)
+    TEXT            shift and go to state 8
 
+    term                           shift and go to state 25
 
 state 24
 
-    (11) factor -> factor STRONG term STRONG term .
+    (13) factor -> factor EM term EM term .
 
-    STRONG          reduce using rule 11 (factor -> factor STRONG term STRONG term .)
-    EM              reduce using rule 11 (factor -> factor STRONG term STRONG term .)
-    CR              reduce using rule 11 (factor -> factor STRONG term STRONG term .)
-    $end            reduce using rule 11 (factor -> factor STRONG term STRONG term .)
+    STRONG          reduce using rule 13 (factor -> factor EM term EM term .)
+    EM              reduce using rule 13 (factor -> factor EM term EM term .)
+    CR              reduce using rule 13 (factor -> factor EM term EM term .)
+    $end            reduce using rule 13 (factor -> factor EM term EM term .)
+
+
+state 25
+
+    (12) factor -> factor STRONG term STRONG term .
+
+    STRONG          reduce using rule 12 (factor -> factor STRONG term STRONG term .)
+    EM              reduce using rule 12 (factor -> factor STRONG term STRONG term .)
+    CR              reduce using rule 12 (factor -> factor STRONG term STRONG term .)
+    $end            reduce using rule 12 (factor -> factor STRONG term STRONG term .)
 
