@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'o\x0e\xa8\xa9\x9d\xe1\x13\xc3\xdd\xd1\xed\xd8\x16\x91\xd1\x1d'
+_lr_signature = '\x9f\x983[s\x9f\xa8\x98S\x8e!\xe7\n\r^\x8c'
     
-_lr_action_items = {'EM':([0,3,9,13,15,20,21,24,29,31,32,33,35,36,42,48,49,51,56,57,],[1,-24,25,-23,-22,25,25,25,1,25,25,25,-21,43,-16,-17,-18,-15,-20,-19,]),'H1':([0,29,],[18,18,]),'ATITLERIGHT':([3,13,38,41,],[-24,-23,45,47,]),'IMG':([0,1,4,8,16,17,18,29,],[12,12,12,12,12,12,12,12,]),'H2':([0,29,],[16,16,]),'H3':([0,29,],[17,17,]),'ALEFT':([0,1,4,8,16,17,18,29,],[7,7,7,7,7,7,7,7,]),'NUMBER':([0,29,],[4,4,]),'LI':([0,29,],[8,8,]),'HR':([0,29,],[2,2,]),'CODE':([3,9,13,15,20,21,24,31,32,33,35,37,42,48,49,51,56,57,],[-24,26,-23,-22,26,26,26,26,26,26,-21,44,-16,-17,-18,-15,-20,-19,]),'ATITLELEFT':([3,9,12,13,15,20,21,24,31,32,33,35,42,48,49,51,56,57,],[-24,27,30,-23,-22,27,27,27,27,27,27,-21,-16,-17,-18,-15,-20,-19,]),'BR':([0,29,],[5,5,]),'TEXT':([0,1,4,6,7,8,16,17,18,25,26,27,28,29,30,34,43,44,46,50,52,55,],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,]),'CR':([0,2,3,5,9,11,13,14,15,19,20,21,24,29,31,32,33,35,40,42,48,49,51,56,57,],[14,-12,-24,-13,-14,29,-23,-5,-22,-2,-10,-11,-9,-4,-7,-8,-6,-21,-3,-16,-17,-18,-15,-20,-19,]),'ALINKLEFT':([45,47,],[50,52,]),'STRONG':([0,1,3,4,8,9,13,15,16,17,18,20,21,22,24,29,31,32,33,35,39,42,48,49,51,56,57,],[6,6,-24,6,6,28,-23,-22,6,6,6,28,28,34,28,6,28,28,28,-21,46,-16,-17,-18,-15,-20,-19,]),'ALINKRIGHT':([3,13,53,54,],[-24,-23,55,56,]),'ARIGHT':([3,13,23,],[-24,-23,35,]),'$end':([2,3,5,9,10,11,13,14,15,19,20,21,24,29,31,32,33,35,40,42,48,49,51,56,57,],[-12,-24,-13,-14,0,-1,-23,-5,-22,-2,-10,-11,-9,-4,-7,-8,-6,-21,-3,-16,-17,-18,-15,-20,-19,]),}
+_lr_action_items = {'EM':([0,4,8,12,13,15,20,23,25,28,31,32,33,34,35,37,46,48,52,56,57,59,61,69,71,73,],[1,-30,24,-29,1,-28,24,24,38,1,1,24,24,24,-27,47,-21,58,1,24,-22,-23,-20,-26,-25,-24,]),'H1':([0,13,28,31,52,],[18,18,18,18,18,]),'MULICODE':([3,4,5,8,10,12,13,14,15,19,20,23,30,31,32,33,34,35,42,45,46,54,56,57,59,61,62,69,71,72,73,],[-17,-30,-18,-19,28,-29,-9,-2,-28,-4,-16,-15,-8,-7,-13,-14,-12,-27,52,-6,-21,-11,-10,-22,-23,-20,-3,-26,-25,-5,-24,]),'ATITLERIGHT':([4,12,40,43,],[-30,-29,50,53,]),'IMG':([0,1,7,13,16,17,18,28,31,44,52,68,],[11,11,11,11,11,11,11,11,11,11,11,11,]),'H2':([0,13,28,31,52,],[16,16,16,16,16,]),'H3':([0,13,28,31,52,],[17,17,17,17,17,]),'ALEFT':([0,1,7,13,16,17,18,28,31,44,52,68,],[2,2,2,2,2,2,2,2,2,2,2,2,]),'LI':([0,13,28,31,52,],[7,7,7,7,7,]),'HR':([0,13,28,31,44,52,68,],[3,3,3,3,54,3,54,]),'CODE':([4,8,12,15,20,23,32,33,34,35,39,46,56,57,58,59,61,69,71,73,],[-30,25,-29,-28,25,25,25,25,25,-27,49,-21,25,-22,65,-23,-20,-26,-25,-24,]),'ATITLELEFT':([4,8,11,12,15,20,23,32,33,34,35,46,56,57,59,61,69,71,73,],[-30,26,29,-29,-28,26,26,26,26,26,-27,-21,26,-22,-23,-20,-26,-25,-24,]),'BR':([0,13,28,31,52,],[5,5,5,5,5,]),'TEXT':([0,1,2,6,7,13,16,17,18,24,25,26,27,28,29,31,36,38,44,47,49,51,52,60,63,65,68,70,],[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,]),'CR':([0,3,4,5,8,12,13,14,15,19,20,23,28,30,31,32,33,34,35,42,45,46,52,54,55,56,57,59,61,62,69,71,72,73,],[13,-17,-30,-18,-19,-29,-9,31,-28,-4,-16,-15,13,-8,-7,-13,-14,-12,-27,31,-6,-21,13,-11,64,-10,-22,-23,-20,31,-26,-25,-5,-24,]),'ALINKLEFT':([50,53,],[60,63,]),'STRONG':([0,1,4,7,8,12,13,15,16,17,18,20,22,23,28,31,32,33,34,35,41,44,46,52,56,57,59,61,68,69,71,73,],[6,6,-30,6,27,-29,6,-28,6,6,6,27,36,27,6,6,27,27,27,-27,51,6,-21,6,27,-22,-23,-20,6,-26,-25,-24,]),'ALINKRIGHT':([4,12,66,67,],[-30,-29,70,71,]),'ARIGHT':([4,12,21,31,64,],[-30,-29,35,44,68,]),'$end':([3,4,5,8,9,10,12,13,14,15,19,20,23,30,31,32,33,34,35,45,46,54,56,57,59,61,62,69,71,72,73,],[-17,-30,-18,-19,0,-1,-29,-9,-2,-28,-4,-16,-15,-8,-7,-13,-14,-12,-27,-6,-21,-11,-10,-22,-23,-20,-3,-26,-25,-5,-24,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'body':([0,],[10,]),'term':([0,1,4,6,7,8,16,17,18,25,26,27,28,29,30,34,43,44,46,50,52,55,],[15,15,15,22,23,15,15,15,15,36,37,38,39,15,41,42,48,49,51,53,54,57,]),'statement':([0,],[11,]),'letter':([0,1,4,6,7,8,16,17,18,25,26,27,28,29,30,34,43,44,46,50,52,55,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'factor':([0,1,4,8,16,17,18,29,],[9,20,21,24,31,32,33,9,]),'expression':([0,29,],[19,40,]),}
+_lr_goto_items = {'body':([0,],[9,]),'term':([0,1,2,6,7,13,16,17,18,24,25,26,27,28,29,31,36,38,44,47,49,51,52,60,63,65,68,70,],[15,15,21,22,15,15,15,15,15,37,39,40,41,15,43,15,46,48,15,57,59,61,15,66,67,69,15,73,]),'letter':([0,1,2,6,7,13,16,17,18,24,25,26,27,28,29,31,36,38,44,47,49,51,52,60,63,65,68,70,],[12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'segment':([0,28,52,],[14,42,62,]),'list':([44,68,],[55,72,]),'statement':([0,],[10,]),'factor':([0,1,7,13,16,17,18,28,31,44,52,68,],[8,20,23,8,32,33,34,8,8,56,8,56,]),'expression':([0,13,28,31,52,],[19,30,19,45,19,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -26,28 +26,34 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> body","S'",1,None,None,None),
-  ('body -> statement','body',1,'p_body','run.py',61),
-  ('statement -> expression','statement',1,'p_state','run.py',74),
-  ('statement -> statement CR expression','statement',3,'p_state','run.py',75),
-  ('statement -> statement CR','statement',2,'p_state','run.py',76),
-  ('statement -> CR','statement',1,'p_state','run.py',77),
-  ('expression -> H1 factor','expression',2,'p_exp_cr','run.py',93),
-  ('expression -> H2 factor','expression',2,'p_exp_cr','run.py',94),
-  ('expression -> H3 factor','expression',2,'p_exp_cr','run.py',95),
-  ('expression -> LI factor','expression',2,'p_exp_cr','run.py',96),
-  ('expression -> EM factor','expression',2,'p_exp_cr','run.py',97),
-  ('expression -> NUMBER factor','expression',2,'p_exp_cr','run.py',98),
-  ('expression -> HR','expression',1,'p_exp_cr','run.py',99),
-  ('expression -> BR','expression',1,'p_exp_cr','run.py',100),
-  ('expression -> factor','expression',1,'p_exp_cr','run.py',101),
-  ('factor -> factor STRONG term STRONG term','factor',5,'p_factor_term','run.py',133),
-  ('factor -> STRONG term STRONG term','factor',4,'p_factor_term','run.py',134),
-  ('factor -> factor EM term EM term','factor',5,'p_factor_term','run.py',135),
-  ('factor -> factor CODE term CODE term','factor',5,'p_factor_term','run.py',136),
-  ('factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term','factor',8,'p_factor_term','run.py',137),
-  ('factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT','factor',7,'p_factor_term','run.py',138),
-  ('factor -> ALEFT term ARIGHT','factor',3,'p_factor_term','run.py',139),
-  ('factor -> term','factor',1,'p_factor_term','run.py',140),
-  ('term -> letter','term',1,'p_term_letter','run.py',170),
-  ('letter -> TEXT','letter',1,'p_term_text','run.py',179),
+  ('body -> statement','body',1,'p_body','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',61),
+  ('statement -> segment','statement',1,'p_state_segment','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',74),
+  ('statement -> statement MULICODE segment MULICODE segment','statement',5,'p_state_segment','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',75),
+  ('segment -> expression','segment',1,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',83),
+  ('segment -> segment CR ARIGHT list CR ARIGHT list','segment',7,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',84),
+  ('segment -> segment CR expression','segment',3,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',85),
+  ('segment -> segment CR','segment',2,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',86),
+  ('segment -> CR expression','segment',2,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',87),
+  ('segment -> CR','segment',1,'p_state','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',88),
+  ('list -> factor','list',1,'p_list_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',109),
+  ('list -> HR','list',1,'p_list_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',110),
+  ('expression -> H1 factor','expression',2,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',120),
+  ('expression -> H2 factor','expression',2,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',121),
+  ('expression -> H3 factor','expression',2,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',122),
+  ('expression -> LI factor','expression',2,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',123),
+  ('expression -> EM factor','expression',2,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',124),
+  ('expression -> HR','expression',1,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',125),
+  ('expression -> BR','expression',1,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',126),
+  ('expression -> factor','expression',1,'p_exp_cr','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',127),
+  ('factor -> factor STRONG term STRONG term','factor',5,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',161),
+  ('factor -> STRONG term STRONG term','factor',4,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',162),
+  ('factor -> factor EM term EM term','factor',5,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',163),
+  ('factor -> factor CODE term CODE term','factor',5,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',164),
+  ('factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term','factor',8,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',165),
+  ('factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT','factor',7,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',166),
+  ('factor -> factor CODE EM term EM CODE term','factor',7,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',167),
+  ('factor -> ALEFT term ARIGHT','factor',3,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',168),
+  ('factor -> term','factor',1,'p_factor_term','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',169),
+  ('term -> letter','term',1,'p_term_letter','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',205),
+  ('letter -> TEXT','letter',1,'p_term_text','/Users/nathan/GithubProjects/Markdown-HTML-Compiler/Markdown-HTML-Compiler/run.py',210),
 ]

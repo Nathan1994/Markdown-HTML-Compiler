@@ -7,7 +7,7 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'NUMBER', 'IMG'
+    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'IMG', 'MULICODE'
     )
 
 # Tokens
@@ -19,19 +19,19 @@ t_EM             = r'_ |\* '
 t_HR             = r'\-\-\-|\*\ \*\ \*'
 t_BR             = r'==='
 t_CODE           = r'\`'
+t_MULICODE       = r'\`\`\`\n'
 t_ATITLELEFT     = r'\['
 t_ATITLERIGHT    = r'\]' 
 t_ALINKLEFT      = r'\('
 t_ALINKRIGHT     = r'\)'
 t_ALEFT          = r'\<'
 t_ARIGHT         = r'\>'
-t_LI             = r'\+|1'
-t_NUMBER         = r'[0-9]'
+t_LI             = r'\+'
 t_IMG            = r'\!'
 
 
 def t_TEXT(t):
-    r'[a-zA-Z\,\. \'\t\:\/]+'
+    r'[a-zA-Z0-9\.\, \'\"\t\:\/]+'
     t.value = str(t.value)
     return t
 
@@ -70,10 +70,21 @@ def p_body(p):
     f.close()
     print '<body>' + p[1] + '</body>'
 
+def p_state_segment(p):
+    '''statement : segment
+                 | statement MULICODE segment MULICODE segment'''
+    if len(p) == 2:
+        p[0] = str(p[1])
+    if len(p) == 6:
+        p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
+
+
 def p_state(p):
-    '''statement : expression
-                 | statement CR expression
-                 | statement CR
+    '''segment   : expression
+                 | segment CR ARIGHT list CR ARIGHT list
+                 | segment CR expression
+                 | segment CR
+                 | CR expression
                  | CR'''
 
     # print("printtttttt")
@@ -87,7 +98,23 @@ def p_state(p):
     elif (len(p) == 4):
         p[0] = str(p[1]) + str(p[3])
     elif (len(p) == 3):
-        p[0] = str(p[1]) + '<br>'
+        if str(p[1]) == '\n':
+            p[0] = str(p[2])
+        else :
+            p[0] = str(p[1]) + '<br>'
+    elif (len(p) == 8):
+        p[0] = str(p[1]) + '<blockquote><p>'  + str(p[4])  + str(p[7]) + '</p></blockquote>'
+
+def p_list_cr(p):
+    '''list : factor
+            | HR'''
+    if (len(p) == 2):
+        if p[1] == '---' or p[1] == '* * *':
+            p[0] = '<hr></hr>'
+        else:
+            p[0] = p[1]
+    
+
 
 def p_exp_cr(p):
     '''expression : H1 factor
@@ -95,10 +122,9 @@ def p_exp_cr(p):
                   | H3 factor
                   | LI factor
                   | EM factor
-                  | NUMBER factor
                   | HR
                   | BR
-                  |    factor'''
+                  | factor'''
 
 
     # print("printtttttt")
@@ -114,7 +140,11 @@ def p_exp_cr(p):
         elif p[1] == '===':
             p[0] = '<h1></h1>'
         else:
-            p[0] = '<p>' + str(p[1]) + '</p>'
+            if str(p[1])[0:2] == '1.':
+                p[0] = '<li>' + str(p[1])[2:] + '</li>'
+            else:
+                p[0] = '<p>' + str(p[1]) + '</p>'
+            
 
     elif (len(p) == 3):
         if p[1] == '#':
@@ -125,8 +155,6 @@ def p_exp_cr(p):
             p[0] = '<h3>' + str(p[2]) + '</h3>'
         elif p[1] == '+' or p[1] == '*':
             p[0] = '<li>' + str(p[2]) + '</li>'
-        elif p[1] == '1':
-            p[0] = '<li>' + str(p[2])[2:] + '</li>'
         
 
 def p_factor_term(p):
@@ -136,6 +164,7 @@ def p_factor_term(p):
               | factor CODE term CODE term
               | factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
               | IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+              | factor CODE EM term EM CODE term
               | ALEFT term ARIGHT
               | term'''
     
@@ -161,18 +190,20 @@ def p_factor_term(p):
             p[0] = str(p[1]) + '<em>' + str(p[3]) + '</em>' + str(p[5])
         if p[2] == '`':
             p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
+    
+        
     elif (len(p) == 8):
-        p[0] = '<p><img src="' + str(p[6]) + '" alt="' + str(p[3]) + '"></p>'
+        if p[1] == '!':
+            p[0] = '<p><img src="' + str(p[6]) + '" alt="' + str(p[3]) + '"></p>'
+        if p[2] == '`' and p[3] == '_':
+            p[0] = str(p[1]) + '<code>' + str(p[3]) + str(p[4]) + str(p[5]) + '</code>' + str(p[7])
+        
     elif (len(p) == 9):
         p[0] = str(p[1]) + '<a href="' + str(p[6]) + '">' + str(p[3]) + '</a>' + str(p[8])
         
 def p_term_letter(p):
     '''term : letter'''
-
-    if (len(p) == 3):
-        p[0] = p[1] + p[2]
-    elif (len(p) == 2):
-        p[0] = p[1]
+    p[0] = p[1]
     
 
 def p_term_text(p):
