@@ -7,7 +7,7 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'IMG', 'MULICODE'
+    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'IMG', 'MULICODE', 'TABSTAR', 'TABTABSTAR', 'STAR'
     )
 
 # Tokens
@@ -28,10 +28,13 @@ t_ALEFT          = r'\<'
 t_ARIGHT         = r'\>'
 t_LI             = r'\+'
 t_IMG            = r'\!'
+t_STAR           = r'\*'
+t_TABSTAR        = r'\t\*'
+t_TABTABSTAR     = r'\t\t\*'
 
 
 def t_TEXT(t):
-    r'[a-zA-Z0-9\.\, \'\"\t\:\/]+'
+    r'[a-zA-Z0-9\.\, \'\"\:\/]+'
     t.value = str(t.value)
     return t
 
@@ -72,9 +75,14 @@ def p_body(p):
 
 def p_state_segment(p):
     '''statement : segment
+                 | TABSTAR segment
                  | statement MULICODE segment MULICODE segment'''
     if len(p) == 2:
+        print('aaaaaaaa')
         p[0] = str(p[1])
+    if len(p) == 3:
+        print('hhhhhhhh')
+        p[0] = p[2]
     if len(p) == 6:
         p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
 
@@ -105,10 +113,15 @@ def p_state(p):
     elif (len(p) == 8):
         p[0] = str(p[1]) + '<blockquote><p>'  + str(p[4])  + str(p[7]) + '</p></blockquote>'
 
+
 def p_list_cr(p):
     '''list : factor
             | HR'''
     if (len(p) == 2):
+        # print("printtttttt")
+        # for x in p:
+        #     print(x)
+        # print("printtttttt")
         if p[1] == '---' or p[1] == '* * *':
             p[0] = '<hr></hr>'
         else:
