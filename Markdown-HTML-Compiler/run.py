@@ -7,7 +7,7 @@
 import sys
 
 tokens = (
-    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'IMG', 'MULICODE', 'TABSTAR', 'TABTABSTAR', 'STAR'
+    'H1','H2','H3','STRONG','EM','HR', 'CR', 'TEXT', 'BR', 'CODE', 'ATITLELEFT', 'ATITLERIGHT', 'ALINKLEFT', 'ALINKRIGHT', 'ALEFT', 'ARIGHT', 'LI', 'IMG', 'MULICODE', 'TABSTAR', 'TABTABSTAR',
     )
 
 # Tokens
@@ -28,7 +28,6 @@ t_ALEFT          = r'\<'
 t_ARIGHT         = r'\>'
 t_LI             = r'\+'
 t_IMG            = r'\!'
-t_STAR           = r'\*'
 t_TABSTAR        = r'\t\*'
 t_TABTABSTAR     = r'\t\t\*'
 
@@ -75,17 +74,29 @@ def p_body(p):
 
 def p_state_segment(p):
     '''statement : segment
-                 | TABSTAR segment
+                 | statement EM subseg
                  | statement MULICODE segment MULICODE segment'''
     if len(p) == 2:
-        print('aaaaaaaa')
         p[0] = str(p[1])
-    if len(p) == 3:
-        print('hhhhhhhh')
-        p[0] = p[2]
+    if len(p) == 4:
+        p[0] = str(p[1]) + '<ul>' + '<li>' + str(p[3]) + '</ul>'
     if len(p) == 6:
         p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
 
+def p_subseg_subsubseg(p):
+    '''subseg : subsubseg
+              | subseg TABSTAR subsubseg'''
+    if len(p) == 4:
+        p[0] = str(p[1]) + '</li>' + '<ul>' + '<li>' + str(p[3]) + '</ul>'
+    elif len(p) == 2:
+        p[0] = str(p[1])
+def p_subsubseg_subsubsubseg(p):
+    '''subsubseg : segment
+                 | subsubseg TABTABSTAR segment'''
+    if len(p) == 4:
+        p[0] = str(p[1]) + '</li>' + '<ul>' + '<li>' + str(p[3]) + '</ul>'
+    elif len(p) == 2:
+        p[0] = str(p[1])
 
 def p_state(p):
     '''segment   : expression
@@ -94,6 +105,7 @@ def p_state(p):
                  | segment CR
                  | CR expression
                  | CR'''
+                 
 
     # print("printtttttt")
     # for x in p:
@@ -107,6 +119,8 @@ def p_state(p):
         p[0] = str(p[1]) + str(p[3])
     elif (len(p) == 3):
         if str(p[1]) == '\n':
+            p[0] = str(p[2])
+        elif str(p[1]) == '*':
             p[0] = str(p[2])
         else :
             p[0] = str(p[1]) + '<br>'
@@ -134,7 +148,6 @@ def p_exp_cr(p):
                   | H2 factor
                   | H3 factor
                   | LI factor
-                  | EM factor
                   | HR
                   | BR
                   | factor'''
@@ -166,7 +179,7 @@ def p_exp_cr(p):
             p[0] = '<h2>' + str(p[2]) + '</h2>'
         elif p[1] == '###': 
             p[0] = '<h3>' + str(p[2]) + '</h3>'
-        elif p[1] == '+' or p[1] == '*':
+        elif p[1] == '+' :
             p[0] = '<li>' + str(p[2]) + '</li>'
         
 
