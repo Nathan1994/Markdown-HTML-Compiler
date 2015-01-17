@@ -34,6 +34,10 @@ my `mama` always said:
 ---
 <http://www.github.com/guoylyy/>
 
+1. i wish jenny can marry with gump early.
+2. who is you daddy
+	* i love it
+	* wow lol
 
 ===
 

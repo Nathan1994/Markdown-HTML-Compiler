@@ -75,6 +75,7 @@ def p_body(p):
 def p_state_segment(p):
     '''statement : segment
                  | statement EM subseg CR segment
+                 | statement TABSTAR segment CR TABSTAR segment CR segment
                  | statement MULICODE segment MULICODE segment'''
     if len(p) == 2:
         p[0] = str(p[1])
@@ -82,10 +83,11 @@ def p_state_segment(p):
     #     p[0] = str(p[1]) + '<ul>' + '<li>' + str(p[3]) + '</ul>'
     if len(p) == 6:
         if str(p[2]) == '*':
-
             p[0] = str(p[1]) + '<ul>' + '<li>' + str(p[3]) + '</ul>' + str(p[5])
         else:
             p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
+    if len(p) == 9:
+        p[0] = str(p[1]).replace("<br>","") + '<ul>' + '<li>' + str(p[3]).replace("<p>","").replace("</p>","") + '</li>' + '<li>' + str(p[6]).replace("<p>","").replace("</p>","") + '</li>' + '</ul>' + '</ol>' + str(p[8])
 
 def p_subseg_subsubseg(p):
     '''subseg : segment
@@ -94,7 +96,7 @@ def p_subseg_subsubseg(p):
         p[0] = str(p[1]) + '</li>' + '<ul>' + '<li>' + str(p[3]) + '</ul>'
     elif len(p) == 2:
         p[0] = str(p[1]).replace("<p>","").replace("</p>","").replace("<br>","")
-        
+
 def p_subsubseg_subsubsubseg(p):
     '''subsubseg : segment
                  | subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg'''
@@ -181,6 +183,8 @@ def p_exp_cr(p):
             p[0] = '<h1></h1>'
         else:
             if str(p[1])[0:2] == '1.':
+                p[0] = '<ol>' + '<li>' + str(p[1])[2:] + '</li>'
+            elif str(p[1])[0:2] == '2.':
                 p[0] = '<li>' + str(p[1])[2:] + '</li>'
             else:
                 p[0] = '<p>' + str(p[1]) + '</p>'
