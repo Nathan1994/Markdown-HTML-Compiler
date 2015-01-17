@@ -4,7 +4,7 @@ Markdown-HTML-Compiler
 
 ## 项目基本功能
 
-本项目主要实现了 markdown 的解析，能够正确解析的 markdown 语法最要有：
+本项目主要实现了 test03.md 的解析，能够正确解析的 markdown 语法最要有：
 
 * 标题 h1 到 h3
 * 列表
