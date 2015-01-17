@@ -198,7 +198,7 @@ def p_exp_cr(p):
         elif p[1] == '###': 
             p[0] = '<h3>' + str(p[2]) + '</h3>'
         elif p[1] == '+' :
-            p[0] = '<li>' + str(p[2]) + '</li>'
+            p[0] = '<ul>' + '<li>' + str(p[2]) + '</li>' + '</ul>'
         
 
 def p_factor_term(p):
@@ -264,5 +264,5 @@ import ply.yacc as yacc
 yacc.yacc()
 
 if __name__ == '__main__':
-    filename = '../TestDocument/test copy.md'
+    filename = '../TestDocument/test03.md'
     yacc.parse(open(filename).read())
