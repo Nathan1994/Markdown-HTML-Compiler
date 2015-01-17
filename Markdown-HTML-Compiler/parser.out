@@ -5,76 +5,78 @@ Grammar
 Rule 0     S' -> body
 Rule 1     body -> statement
 Rule 2     statement -> segment
-Rule 3     statement -> statement EM subseg
+Rule 3     statement -> statement EM subseg CR segment
 Rule 4     statement -> statement MULICODE segment MULICODE segment
-Rule 5     subseg -> subsubseg
+Rule 5     subseg -> segment
 Rule 6     subseg -> subseg TABSTAR subsubseg
 Rule 7     subsubseg -> segment
-Rule 8     subsubseg -> subsubseg TABTABSTAR segment
-Rule 9     segment -> expression
-Rule 10    segment -> segment CR ARIGHT list CR ARIGHT list
-Rule 11    segment -> segment CR expression
-Rule 12    segment -> segment CR
-Rule 13    segment -> CR expression
-Rule 14    segment -> CR
-Rule 15    list -> factor
-Rule 16    list -> HR
-Rule 17    expression -> H1 factor
-Rule 18    expression -> H2 factor
-Rule 19    expression -> H3 factor
-Rule 20    expression -> LI factor
-Rule 21    expression -> HR
-Rule 22    expression -> BR
-Rule 23    expression -> factor
-Rule 24    factor -> factor STRONG term STRONG term
-Rule 25    factor -> STRONG term STRONG term
-Rule 26    factor -> factor EM term EM term
-Rule 27    factor -> factor CODE term CODE term
-Rule 28    factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-Rule 29    factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-Rule 30    factor -> factor CODE EM term EM CODE term
-Rule 31    factor -> ALEFT term ARIGHT
-Rule 32    factor -> term
-Rule 33    term -> letter
-Rule 34    letter -> TEXT
+Rule 8     subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg
+Rule 9     subsubsubseg -> list
+Rule 10    segment -> expression
+Rule 11    segment -> segment CR ARIGHT list CR ARIGHT list
+Rule 12    segment -> segment CR expression
+Rule 13    segment -> segment CR
+Rule 14    segment -> CR expression
+Rule 15    segment -> CR
+Rule 16    list -> factor
+Rule 17    list -> HR
+Rule 18    expression -> H1 factor
+Rule 19    expression -> H2 factor
+Rule 20    expression -> H3 factor
+Rule 21    expression -> LI factor
+Rule 22    expression -> HR
+Rule 23    expression -> BR
+Rule 24    expression -> factor
+Rule 25    factor -> factor STRONG term STRONG term
+Rule 26    factor -> STRONG term STRONG term
+Rule 27    factor -> factor EM term EM term
+Rule 28    factor -> factor CODE term CODE term
+Rule 29    factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+Rule 30    factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+Rule 31    factor -> factor CODE EM term EM CODE term
+Rule 32    factor -> ALEFT term ARIGHT
+Rule 33    factor -> term
+Rule 34    term -> letter
+Rule 35    letter -> TEXT
 
 Terminals, with rules where they appear
 
-ALEFT                : 31
-ALINKLEFT            : 28 29
-ALINKRIGHT           : 28 29
-ARIGHT               : 10 10 31
-ATITLELEFT           : 28 29
-ATITLERIGHT          : 28 29
-BR                   : 22
-CODE                 : 27 27 30 30
-CR                   : 10 10 11 12 13 14
-EM                   : 3 26 26 30 30
-H1                   : 17
-H2                   : 18
-H3                   : 19
-HR                   : 16 21
-IMG                  : 29
-LI                   : 20
+ALEFT                : 32
+ALINKLEFT            : 29 30
+ALINKRIGHT           : 29 30
+ARIGHT               : 11 11 32
+ATITLELEFT           : 29 30
+ATITLERIGHT          : 29 30
+BR                   : 23
+CODE                 : 28 28 31 31
+CR                   : 3 8 11 11 12 13 14 15
+EM                   : 3 27 27 31 31
+H1                   : 18
+H2                   : 19
+H3                   : 20
+HR                   : 17 22
+IMG                  : 30
+LI                   : 21
 MULICODE             : 4 4
-STRONG               : 24 24 25 25
+STRONG               : 25 25 26 26
 TABSTAR              : 6
-TABTABSTAR           : 8
-TEXT                 : 34
+TABTABSTAR           : 8 8
+TEXT                 : 35
 error                : 
 
 Nonterminals, with rules where they appear
 
 body                 : 0
-expression           : 9 11 13
-factor               : 15 17 18 19 20 23 24 26 27 28 30
-letter               : 33
-list                 : 10 10
-segment              : 2 4 4 7 8 10 11 12
+expression           : 10 12 14
+factor               : 16 18 19 20 21 24 25 27 28 29 31
+letter               : 34
+list                 : 9 11 11
+segment              : 2 3 4 4 5 7 11 12 13
 statement            : 1 3 4
 subseg               : 3 6
-subsubseg            : 5 6 8
-term                 : 24 24 25 25 26 26 27 27 28 28 28 29 29 30 30 31 32
+subsubseg            : 6 8
+subsubsubseg         : 8 8
+term                 : 25 25 26 26 27 27 28 28 29 29 29 30 30 31 31 32 33
 
 Parsing method: LALR
 
@@ -83,32 +85,32 @@ state 0
     (0) S' -> . body
     (1) body -> . statement
     (2) statement -> . segment
-    (3) statement -> . statement EM subseg
+    (3) statement -> . statement EM subseg CR segment
     (4) statement -> . statement MULICODE segment MULICODE segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     CR              shift and go to state 12
     H1              shift and go to state 17
@@ -132,9 +134,9 @@ state 0
 
 state 1
 
-    (31) factor -> ALEFT . term ARIGHT
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (32) factor -> ALEFT . term ARIGHT
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
@@ -143,51 +145,51 @@ state 1
 
 state 2
 
-    (21) expression -> HR .
+    (22) expression -> HR .
 
-    CR              reduce using rule 21 (expression -> HR .)
-    TABTABSTAR      reduce using rule 21 (expression -> HR .)
-    TABSTAR         reduce using rule 21 (expression -> HR .)
-    EM              reduce using rule 21 (expression -> HR .)
-    MULICODE        reduce using rule 21 (expression -> HR .)
-    $end            reduce using rule 21 (expression -> HR .)
+    CR              reduce using rule 22 (expression -> HR .)
+    EM              reduce using rule 22 (expression -> HR .)
+    MULICODE        reduce using rule 22 (expression -> HR .)
+    $end            reduce using rule 22 (expression -> HR .)
+    TABSTAR         reduce using rule 22 (expression -> HR .)
+    TABTABSTAR      reduce using rule 22 (expression -> HR .)
 
 
 state 3
 
-    (34) letter -> TEXT .
+    (35) letter -> TEXT .
 
-    STRONG          reduce using rule 34 (letter -> TEXT .)
-    EM              reduce using rule 34 (letter -> TEXT .)
-    CODE            reduce using rule 34 (letter -> TEXT .)
-    ATITLELEFT      reduce using rule 34 (letter -> TEXT .)
-    CR              reduce using rule 34 (letter -> TEXT .)
-    MULICODE        reduce using rule 34 (letter -> TEXT .)
-    $end            reduce using rule 34 (letter -> TEXT .)
-    TABTABSTAR      reduce using rule 34 (letter -> TEXT .)
-    TABSTAR         reduce using rule 34 (letter -> TEXT .)
-    ALINKRIGHT      reduce using rule 34 (letter -> TEXT .)
-    ATITLERIGHT     reduce using rule 34 (letter -> TEXT .)
-    ARIGHT          reduce using rule 34 (letter -> TEXT .)
+    STRONG          reduce using rule 35 (letter -> TEXT .)
+    EM              reduce using rule 35 (letter -> TEXT .)
+    CODE            reduce using rule 35 (letter -> TEXT .)
+    ATITLELEFT      reduce using rule 35 (letter -> TEXT .)
+    CR              reduce using rule 35 (letter -> TEXT .)
+    MULICODE        reduce using rule 35 (letter -> TEXT .)
+    $end            reduce using rule 35 (letter -> TEXT .)
+    TABSTAR         reduce using rule 35 (letter -> TEXT .)
+    TABTABSTAR      reduce using rule 35 (letter -> TEXT .)
+    ALINKRIGHT      reduce using rule 35 (letter -> TEXT .)
+    ATITLERIGHT     reduce using rule 35 (letter -> TEXT .)
+    ARIGHT          reduce using rule 35 (letter -> TEXT .)
 
 
 state 4
 
-    (22) expression -> BR .
+    (23) expression -> BR .
 
-    CR              reduce using rule 22 (expression -> BR .)
-    TABTABSTAR      reduce using rule 22 (expression -> BR .)
-    TABSTAR         reduce using rule 22 (expression -> BR .)
-    EM              reduce using rule 22 (expression -> BR .)
-    MULICODE        reduce using rule 22 (expression -> BR .)
-    $end            reduce using rule 22 (expression -> BR .)
+    CR              reduce using rule 23 (expression -> BR .)
+    EM              reduce using rule 23 (expression -> BR .)
+    MULICODE        reduce using rule 23 (expression -> BR .)
+    $end            reduce using rule 23 (expression -> BR .)
+    TABSTAR         reduce using rule 23 (expression -> BR .)
+    TABTABSTAR      reduce using rule 23 (expression -> BR .)
 
 
 state 5
 
-    (25) factor -> STRONG . term STRONG term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (26) factor -> STRONG . term STRONG term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
@@ -196,18 +198,18 @@ state 5
 
 state 6
 
-    (20) expression -> LI . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (21) expression -> LI . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
@@ -220,25 +222,25 @@ state 6
 
 state 7
 
-    (23) expression -> factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (24) expression -> factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 23 (expression -> factor .)
-    TABTABSTAR      reduce using rule 23 (expression -> factor .)
-    TABSTAR         reduce using rule 23 (expression -> factor .)
-    MULICODE        reduce using rule 23 (expression -> factor .)
-    $end            reduce using rule 23 (expression -> factor .)
+    CR              reduce using rule 24 (expression -> factor .)
+    MULICODE        reduce using rule 24 (expression -> factor .)
+    $end            reduce using rule 24 (expression -> factor .)
+    TABSTAR         reduce using rule 24 (expression -> factor .)
+    TABTABSTAR      reduce using rule 24 (expression -> factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 23 (expression -> factor .) ]
+  ! EM              [ reduce using rule 24 (expression -> factor .) ]
 
 
 state 8
@@ -250,7 +252,7 @@ state 8
 state 9
 
     (1) body -> statement .
-    (3) statement -> statement . EM subseg
+    (3) statement -> statement . EM subseg CR segment
     (4) statement -> statement . MULICODE segment MULICODE segment
 
     $end            reduce using rule 1 (body -> statement .)
@@ -260,58 +262,58 @@ state 9
 
 state 10
 
-    (29) factor -> IMG . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (30) factor -> IMG . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
 
     ATITLELEFT      shift and go to state 28
 
 
 state 11
 
-    (33) term -> letter .
+    (34) term -> letter .
 
-    EM              reduce using rule 33 (term -> letter .)
-    CODE            reduce using rule 33 (term -> letter .)
-    STRONG          reduce using rule 33 (term -> letter .)
-    ATITLELEFT      reduce using rule 33 (term -> letter .)
-    CR              reduce using rule 33 (term -> letter .)
-    MULICODE        reduce using rule 33 (term -> letter .)
-    $end            reduce using rule 33 (term -> letter .)
-    TABTABSTAR      reduce using rule 33 (term -> letter .)
-    TABSTAR         reduce using rule 33 (term -> letter .)
-    ATITLERIGHT     reduce using rule 33 (term -> letter .)
-    ALINKRIGHT      reduce using rule 33 (term -> letter .)
-    ARIGHT          reduce using rule 33 (term -> letter .)
+    EM              reduce using rule 34 (term -> letter .)
+    STRONG          reduce using rule 34 (term -> letter .)
+    CODE            reduce using rule 34 (term -> letter .)
+    ATITLELEFT      reduce using rule 34 (term -> letter .)
+    CR              reduce using rule 34 (term -> letter .)
+    MULICODE        reduce using rule 34 (term -> letter .)
+    $end            reduce using rule 34 (term -> letter .)
+    TABSTAR         reduce using rule 34 (term -> letter .)
+    TABTABSTAR      reduce using rule 34 (term -> letter .)
+    ATITLERIGHT     reduce using rule 34 (term -> letter .)
+    ALINKRIGHT      reduce using rule 34 (term -> letter .)
+    ARIGHT          reduce using rule 34 (term -> letter .)
 
 
 state 12
 
-    (13) segment -> CR . expression
-    (14) segment -> CR .
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (14) segment -> CR . expression
+    (15) segment -> CR .
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    CR              reduce using rule 14 (segment -> CR .)
-    EM              reduce using rule 14 (segment -> CR .)
-    MULICODE        reduce using rule 14 (segment -> CR .)
-    $end            reduce using rule 14 (segment -> CR .)
-    TABTABSTAR      reduce using rule 14 (segment -> CR .)
-    TABSTAR         reduce using rule 14 (segment -> CR .)
+    CR              reduce using rule 15 (segment -> CR .)
+    EM              reduce using rule 15 (segment -> CR .)
+    MULICODE        reduce using rule 15 (segment -> CR .)
+    $end            reduce using rule 15 (segment -> CR .)
+    TABSTAR         reduce using rule 15 (segment -> CR .)
+    TABTABSTAR      reduce using rule 15 (segment -> CR .)
     H1              shift and go to state 17
     H2              shift and go to state 15
     H3              shift and go to state 16
@@ -331,9 +333,9 @@ state 12
 state 13
 
     (2) statement -> segment .
-    (10) segment -> segment . CR ARIGHT list CR ARIGHT list
-    (11) segment -> segment . CR expression
-    (12) segment -> segment . CR
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
     EM              reduce using rule 2 (statement -> segment .)
     MULICODE        reduce using rule 2 (statement -> segment .)
@@ -343,33 +345,33 @@ state 13
 
 state 14
 
-    (32) factor -> term .
+    (33) factor -> term .
 
-    STRONG          reduce using rule 32 (factor -> term .)
-    EM              reduce using rule 32 (factor -> term .)
-    CODE            reduce using rule 32 (factor -> term .)
-    ATITLELEFT      reduce using rule 32 (factor -> term .)
-    CR              reduce using rule 32 (factor -> term .)
-    TABTABSTAR      reduce using rule 32 (factor -> term .)
-    TABSTAR         reduce using rule 32 (factor -> term .)
-    MULICODE        reduce using rule 32 (factor -> term .)
-    $end            reduce using rule 32 (factor -> term .)
+    STRONG          reduce using rule 33 (factor -> term .)
+    EM              reduce using rule 33 (factor -> term .)
+    CODE            reduce using rule 33 (factor -> term .)
+    ATITLELEFT      reduce using rule 33 (factor -> term .)
+    CR              reduce using rule 33 (factor -> term .)
+    MULICODE        reduce using rule 33 (factor -> term .)
+    $end            reduce using rule 33 (factor -> term .)
+    TABSTAR         reduce using rule 33 (factor -> term .)
+    TABTABSTAR      reduce using rule 33 (factor -> term .)
 
 
 state 15
 
-    (18) expression -> H2 . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (19) expression -> H2 . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
@@ -382,18 +384,18 @@ state 15
 
 state 16
 
-    (19) expression -> H3 . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (20) expression -> H3 . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
@@ -406,18 +408,18 @@ state 16
 
 state 17
 
-    (17) expression -> H1 . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (18) expression -> H1 . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
@@ -430,58 +432,58 @@ state 17
 
 state 18
 
-    (9) segment -> expression .
+    (10) segment -> expression .
 
-    CR              reduce using rule 9 (segment -> expression .)
-    EM              reduce using rule 9 (segment -> expression .)
-    MULICODE        reduce using rule 9 (segment -> expression .)
-    $end            reduce using rule 9 (segment -> expression .)
-    TABTABSTAR      reduce using rule 9 (segment -> expression .)
-    TABSTAR         reduce using rule 9 (segment -> expression .)
+    CR              reduce using rule 10 (segment -> expression .)
+    EM              reduce using rule 10 (segment -> expression .)
+    MULICODE        reduce using rule 10 (segment -> expression .)
+    $end            reduce using rule 10 (segment -> expression .)
+    TABSTAR         reduce using rule 10 (segment -> expression .)
+    TABTABSTAR      reduce using rule 10 (segment -> expression .)
 
 
 state 19
 
-    (31) factor -> ALEFT term . ARIGHT
+    (32) factor -> ALEFT term . ARIGHT
 
     ARIGHT          shift and go to state 34
 
 
 state 20
 
-    (25) factor -> STRONG term . STRONG term
+    (26) factor -> STRONG term . STRONG term
 
     STRONG          shift and go to state 35
 
 
 state 21
 
-    (20) expression -> LI factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (21) expression -> LI factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 20 (expression -> LI factor .)
-    TABTABSTAR      reduce using rule 20 (expression -> LI factor .)
-    TABSTAR         reduce using rule 20 (expression -> LI factor .)
-    MULICODE        reduce using rule 20 (expression -> LI factor .)
-    $end            reduce using rule 20 (expression -> LI factor .)
+    CR              reduce using rule 21 (expression -> LI factor .)
+    MULICODE        reduce using rule 21 (expression -> LI factor .)
+    $end            reduce using rule 21 (expression -> LI factor .)
+    TABSTAR         reduce using rule 21 (expression -> LI factor .)
+    TABTABSTAR      reduce using rule 21 (expression -> LI factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 20 (expression -> LI factor .) ]
+  ! EM              [ reduce using rule 21 (expression -> LI factor .) ]
 
 
 state 22
 
-    (26) factor -> factor EM . term EM term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (27) factor -> factor EM . term EM term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
@@ -490,10 +492,10 @@ state 22
 
 state 23
 
-    (27) factor -> factor CODE . term CODE term
-    (30) factor -> factor CODE . EM term EM CODE term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (28) factor -> factor CODE . term CODE term
+    (31) factor -> factor CODE . EM term EM CODE term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     EM              shift and go to state 37
     TEXT            shift and go to state 3
@@ -503,9 +505,9 @@ state 23
 
 state 24
 
-    (28) factor -> factor ATITLELEFT . term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (29) factor -> factor ATITLELEFT . term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
@@ -514,9 +516,9 @@ state 24
 
 state 25
 
-    (24) factor -> factor STRONG . term STRONG term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (25) factor -> factor STRONG . term STRONG term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
@@ -525,35 +527,33 @@ state 25
 
 state 26
 
-    (3) statement -> statement EM . subseg
-    (5) subseg -> . subsubseg
+    (3) statement -> statement EM . subseg CR segment
+    (5) subseg -> . segment
     (6) subseg -> . subseg TABSTAR subsubseg
-    (7) subsubseg -> . segment
-    (8) subsubseg -> . subsubseg TABTABSTAR segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     CR              shift and go to state 12
     H1              shift and go to state 17
@@ -569,39 +569,38 @@ state 26
 
     term                           shift and go to state 14
     letter                         shift and go to state 11
-    segment                        shift and go to state 43
+    segment                        shift and go to state 42
     subseg                         shift and go to state 41
     factor                         shift and go to state 7
-    subsubseg                      shift and go to state 42
     expression                     shift and go to state 18
 
 state 27
 
     (4) statement -> statement MULICODE . segment MULICODE segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     CR              shift and go to state 12
     H1              shift and go to state 17
@@ -617,64 +616,64 @@ state 27
 
     term                           shift and go to state 14
     letter                         shift and go to state 11
-    segment                        shift and go to state 44
+    segment                        shift and go to state 43
     factor                         shift and go to state 7
     expression                     shift and go to state 18
 
 state 28
 
-    (29) factor -> IMG ATITLELEFT . term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (30) factor -> IMG ATITLELEFT . term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 45
+    term                           shift and go to state 44
     letter                         shift and go to state 11
 
 state 29
 
-    (13) segment -> CR expression .
+    (14) segment -> CR expression .
 
-    CR              reduce using rule 13 (segment -> CR expression .)
-    EM              reduce using rule 13 (segment -> CR expression .)
-    MULICODE        reduce using rule 13 (segment -> CR expression .)
-    $end            reduce using rule 13 (segment -> CR expression .)
-    TABTABSTAR      reduce using rule 13 (segment -> CR expression .)
-    TABSTAR         reduce using rule 13 (segment -> CR expression .)
+    CR              reduce using rule 14 (segment -> CR expression .)
+    EM              reduce using rule 14 (segment -> CR expression .)
+    MULICODE        reduce using rule 14 (segment -> CR expression .)
+    $end            reduce using rule 14 (segment -> CR expression .)
+    TABSTAR         reduce using rule 14 (segment -> CR expression .)
+    TABTABSTAR      reduce using rule 14 (segment -> CR expression .)
 
 
 state 30
 
-    (10) segment -> segment CR . ARIGHT list CR ARIGHT list
-    (11) segment -> segment CR . expression
-    (12) segment -> segment CR .
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (11) segment -> segment CR . ARIGHT list CR ARIGHT list
+    (12) segment -> segment CR . expression
+    (13) segment -> segment CR .
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    ARIGHT          shift and go to state 46
-    CR              reduce using rule 12 (segment -> segment CR .)
-    EM              reduce using rule 12 (segment -> segment CR .)
-    MULICODE        reduce using rule 12 (segment -> segment CR .)
-    $end            reduce using rule 12 (segment -> segment CR .)
-    TABTABSTAR      reduce using rule 12 (segment -> segment CR .)
-    TABSTAR         reduce using rule 12 (segment -> segment CR .)
+    ARIGHT          shift and go to state 45
+    CR              reduce using rule 13 (segment -> segment CR .)
+    EM              reduce using rule 13 (segment -> segment CR .)
+    MULICODE        reduce using rule 13 (segment -> segment CR .)
+    $end            reduce using rule 13 (segment -> segment CR .)
+    TABSTAR         reduce using rule 13 (segment -> segment CR .)
+    TABTABSTAR      reduce using rule 13 (segment -> segment CR .)
     H1              shift and go to state 17
     H2              shift and go to state 15
     H3              shift and go to state 16
@@ -687,331 +686,316 @@ state 30
     TEXT            shift and go to state 3
 
     term                           shift and go to state 14
-    expression                     shift and go to state 47
+    expression                     shift and go to state 46
     letter                         shift and go to state 11
     factor                         shift and go to state 7
 
 state 31
 
-    (18) expression -> H2 factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (19) expression -> H2 factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 18 (expression -> H2 factor .)
-    TABTABSTAR      reduce using rule 18 (expression -> H2 factor .)
-    TABSTAR         reduce using rule 18 (expression -> H2 factor .)
-    MULICODE        reduce using rule 18 (expression -> H2 factor .)
-    $end            reduce using rule 18 (expression -> H2 factor .)
+    CR              reduce using rule 19 (expression -> H2 factor .)
+    MULICODE        reduce using rule 19 (expression -> H2 factor .)
+    $end            reduce using rule 19 (expression -> H2 factor .)
+    TABSTAR         reduce using rule 19 (expression -> H2 factor .)
+    TABTABSTAR      reduce using rule 19 (expression -> H2 factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 18 (expression -> H2 factor .) ]
+  ! EM              [ reduce using rule 19 (expression -> H2 factor .) ]
 
 
 state 32
 
-    (19) expression -> H3 factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (20) expression -> H3 factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 19 (expression -> H3 factor .)
-    TABTABSTAR      reduce using rule 19 (expression -> H3 factor .)
-    TABSTAR         reduce using rule 19 (expression -> H3 factor .)
-    MULICODE        reduce using rule 19 (expression -> H3 factor .)
-    $end            reduce using rule 19 (expression -> H3 factor .)
+    CR              reduce using rule 20 (expression -> H3 factor .)
+    MULICODE        reduce using rule 20 (expression -> H3 factor .)
+    $end            reduce using rule 20 (expression -> H3 factor .)
+    TABSTAR         reduce using rule 20 (expression -> H3 factor .)
+    TABTABSTAR      reduce using rule 20 (expression -> H3 factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 19 (expression -> H3 factor .) ]
+  ! EM              [ reduce using rule 20 (expression -> H3 factor .) ]
 
 
 state 33
 
-    (17) expression -> H1 factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (18) expression -> H1 factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 17 (expression -> H1 factor .)
-    TABTABSTAR      reduce using rule 17 (expression -> H1 factor .)
-    TABSTAR         reduce using rule 17 (expression -> H1 factor .)
-    MULICODE        reduce using rule 17 (expression -> H1 factor .)
-    $end            reduce using rule 17 (expression -> H1 factor .)
+    CR              reduce using rule 18 (expression -> H1 factor .)
+    MULICODE        reduce using rule 18 (expression -> H1 factor .)
+    $end            reduce using rule 18 (expression -> H1 factor .)
+    TABSTAR         reduce using rule 18 (expression -> H1 factor .)
+    TABTABSTAR      reduce using rule 18 (expression -> H1 factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 17 (expression -> H1 factor .) ]
+  ! EM              [ reduce using rule 18 (expression -> H1 factor .) ]
 
 
 state 34
 
-    (31) factor -> ALEFT term ARIGHT .
+    (32) factor -> ALEFT term ARIGHT .
 
-    STRONG          reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    EM              reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    CODE            reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    ATITLELEFT      reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    CR              reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    TABTABSTAR      reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    TABSTAR         reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    MULICODE        reduce using rule 31 (factor -> ALEFT term ARIGHT .)
-    $end            reduce using rule 31 (factor -> ALEFT term ARIGHT .)
+    STRONG          reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    EM              reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    CODE            reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    ATITLELEFT      reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    CR              reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    MULICODE        reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    $end            reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    TABSTAR         reduce using rule 32 (factor -> ALEFT term ARIGHT .)
+    TABTABSTAR      reduce using rule 32 (factor -> ALEFT term ARIGHT .)
 
 
 state 35
 
-    (25) factor -> STRONG term STRONG . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (26) factor -> STRONG term STRONG . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 48
+    term                           shift and go to state 47
     letter                         shift and go to state 11
 
 state 36
 
-    (26) factor -> factor EM term . EM term
+    (27) factor -> factor EM term . EM term
 
-    EM              shift and go to state 49
+    EM              shift and go to state 48
 
 
 state 37
 
-    (30) factor -> factor CODE EM . term EM CODE term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (31) factor -> factor CODE EM . term EM CODE term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 50
+    term                           shift and go to state 49
     letter                         shift and go to state 11
 
 state 38
 
-    (27) factor -> factor CODE term . CODE term
+    (28) factor -> factor CODE term . CODE term
 
-    CODE            shift and go to state 51
+    CODE            shift and go to state 50
 
 
 state 39
 
-    (28) factor -> factor ATITLELEFT term . ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (29) factor -> factor ATITLELEFT term . ATITLERIGHT ALINKLEFT term ALINKRIGHT term
 
-    ATITLERIGHT     shift and go to state 52
+    ATITLERIGHT     shift and go to state 51
 
 
 state 40
 
-    (24) factor -> factor STRONG term . STRONG term
+    (25) factor -> factor STRONG term . STRONG term
 
-    STRONG          shift and go to state 53
+    STRONG          shift and go to state 52
 
 
 state 41
 
-    (3) statement -> statement EM subseg .
+    (3) statement -> statement EM subseg . CR segment
     (6) subseg -> subseg . TABSTAR subsubseg
 
-    EM              reduce using rule 3 (statement -> statement EM subseg .)
-    MULICODE        reduce using rule 3 (statement -> statement EM subseg .)
-    $end            reduce using rule 3 (statement -> statement EM subseg .)
-    TABSTAR         shift and go to state 54
+    CR              shift and go to state 54
+    TABSTAR         shift and go to state 53
 
 
 state 42
 
-    (5) subseg -> subsubseg .
-    (8) subsubseg -> subsubseg . TABTABSTAR segment
+    (5) subseg -> segment .
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
-    TABSTAR         reduce using rule 5 (subseg -> subsubseg .)
-    EM              reduce using rule 5 (subseg -> subsubseg .)
-    MULICODE        reduce using rule 5 (subseg -> subsubseg .)
-    $end            reduce using rule 5 (subseg -> subsubseg .)
-    TABTABSTAR      shift and go to state 55
+  ! shift/reduce conflict for CR resolved as shift
+    TABSTAR         reduce using rule 5 (subseg -> segment .)
+    CR              shift and go to state 30
+
+  ! CR              [ reduce using rule 5 (subseg -> segment .) ]
 
 
 state 43
 
-    (7) subsubseg -> segment .
-    (10) segment -> segment . CR ARIGHT list CR ARIGHT list
-    (11) segment -> segment . CR expression
-    (12) segment -> segment . CR
+    (4) statement -> statement MULICODE segment . MULICODE segment
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
-    TABTABSTAR      reduce using rule 7 (subsubseg -> segment .)
-    TABSTAR         reduce using rule 7 (subsubseg -> segment .)
-    EM              reduce using rule 7 (subsubseg -> segment .)
-    MULICODE        reduce using rule 7 (subsubseg -> segment .)
-    $end            reduce using rule 7 (subsubseg -> segment .)
+    MULICODE        shift and go to state 55
     CR              shift and go to state 30
 
 
 state 44
 
-    (4) statement -> statement MULICODE segment . MULICODE segment
-    (10) segment -> segment . CR ARIGHT list CR ARIGHT list
-    (11) segment -> segment . CR expression
-    (12) segment -> segment . CR
+    (30) factor -> IMG ATITLELEFT term . ATITLERIGHT ALINKLEFT term ALINKRIGHT
 
-    MULICODE        shift and go to state 56
-    CR              shift and go to state 30
+    ATITLERIGHT     shift and go to state 56
 
 
 state 45
 
-    (29) factor -> IMG ATITLELEFT term . ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (11) segment -> segment CR ARIGHT . list CR ARIGHT list
+    (16) list -> . factor
+    (17) list -> . HR
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    ATITLERIGHT     shift and go to state 57
-
-
-state 46
-
-    (10) segment -> segment CR ARIGHT . list CR ARIGHT list
-    (15) list -> . factor
-    (16) list -> . HR
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
-
-    HR              shift and go to state 58
+    HR              shift and go to state 57
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
     ALEFT           shift and go to state 1
     TEXT            shift and go to state 3
 
-    list                           shift and go to state 59
+    list                           shift and go to state 58
     term                           shift and go to state 14
     letter                         shift and go to state 11
-    factor                         shift and go to state 60
+    factor                         shift and go to state 59
+
+state 46
+
+    (12) segment -> segment CR expression .
+
+    CR              reduce using rule 12 (segment -> segment CR expression .)
+    EM              reduce using rule 12 (segment -> segment CR expression .)
+    MULICODE        reduce using rule 12 (segment -> segment CR expression .)
+    $end            reduce using rule 12 (segment -> segment CR expression .)
+    TABSTAR         reduce using rule 12 (segment -> segment CR expression .)
+    TABTABSTAR      reduce using rule 12 (segment -> segment CR expression .)
+
 
 state 47
 
-    (11) segment -> segment CR expression .
+    (26) factor -> STRONG term STRONG term .
 
-    CR              reduce using rule 11 (segment -> segment CR expression .)
-    EM              reduce using rule 11 (segment -> segment CR expression .)
-    MULICODE        reduce using rule 11 (segment -> segment CR expression .)
-    $end            reduce using rule 11 (segment -> segment CR expression .)
-    TABTABSTAR      reduce using rule 11 (segment -> segment CR expression .)
-    TABSTAR         reduce using rule 11 (segment -> segment CR expression .)
+    STRONG          reduce using rule 26 (factor -> STRONG term STRONG term .)
+    EM              reduce using rule 26 (factor -> STRONG term STRONG term .)
+    CODE            reduce using rule 26 (factor -> STRONG term STRONG term .)
+    ATITLELEFT      reduce using rule 26 (factor -> STRONG term STRONG term .)
+    CR              reduce using rule 26 (factor -> STRONG term STRONG term .)
+    MULICODE        reduce using rule 26 (factor -> STRONG term STRONG term .)
+    $end            reduce using rule 26 (factor -> STRONG term STRONG term .)
+    TABSTAR         reduce using rule 26 (factor -> STRONG term STRONG term .)
+    TABTABSTAR      reduce using rule 26 (factor -> STRONG term STRONG term .)
 
 
 state 48
 
-    (25) factor -> STRONG term STRONG term .
+    (27) factor -> factor EM term EM . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    STRONG          reduce using rule 25 (factor -> STRONG term STRONG term .)
-    EM              reduce using rule 25 (factor -> STRONG term STRONG term .)
-    CODE            reduce using rule 25 (factor -> STRONG term STRONG term .)
-    ATITLELEFT      reduce using rule 25 (factor -> STRONG term STRONG term .)
-    CR              reduce using rule 25 (factor -> STRONG term STRONG term .)
-    TABTABSTAR      reduce using rule 25 (factor -> STRONG term STRONG term .)
-    TABSTAR         reduce using rule 25 (factor -> STRONG term STRONG term .)
-    MULICODE        reduce using rule 25 (factor -> STRONG term STRONG term .)
-    $end            reduce using rule 25 (factor -> STRONG term STRONG term .)
+    TEXT            shift and go to state 3
 
+    term                           shift and go to state 60
+    letter                         shift and go to state 11
 
 state 49
 
-    (26) factor -> factor EM term EM . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (31) factor -> factor CODE EM term . EM CODE term
 
-    TEXT            shift and go to state 3
+    EM              shift and go to state 61
 
-    term                           shift and go to state 61
-    letter                         shift and go to state 11
 
 state 50
 
-    (30) factor -> factor CODE EM term . EM CODE term
+    (28) factor -> factor CODE term CODE . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    EM              shift and go to state 62
+    TEXT            shift and go to state 3
 
+    term                           shift and go to state 62
+    letter                         shift and go to state 11
 
 state 51
 
-    (27) factor -> factor CODE term CODE . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (29) factor -> factor ATITLELEFT term ATITLERIGHT . ALINKLEFT term ALINKRIGHT term
 
-    TEXT            shift and go to state 3
+    ALINKLEFT       shift and go to state 63
 
-    term                           shift and go to state 63
-    letter                         shift and go to state 11
 
 state 52
 
-    (28) factor -> factor ATITLELEFT term ATITLERIGHT . ALINKLEFT term ALINKRIGHT term
-
-    ALINKLEFT       shift and go to state 64
-
-
-state 53
-
-    (24) factor -> factor STRONG term STRONG . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (25) factor -> factor STRONG term STRONG . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 65
+    term                           shift and go to state 64
     letter                         shift and go to state 11
 
-state 54
+state 53
 
     (6) subseg -> subseg TABSTAR . subsubseg
     (7) subsubseg -> . segment
-    (8) subsubseg -> . subsubseg TABTABSTAR segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (8) subsubseg -> . subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     CR              shift and go to state 12
     H1              shift and go to state 17
@@ -1026,85 +1010,85 @@ state 54
     TEXT            shift and go to state 3
 
     term                           shift and go to state 14
-    segment                        shift and go to state 43
+    expression                     shift and go to state 18
     letter                         shift and go to state 11
     factor                         shift and go to state 7
-    subsubseg                      shift and go to state 66
+    subsubseg                      shift and go to state 65
+    segment                        shift and go to state 66
+
+state 54
+
+    (3) statement -> statement EM subseg CR . segment
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
+
+    CR              shift and go to state 12
+    H1              shift and go to state 17
+    H2              shift and go to state 15
+    H3              shift and go to state 16
+    LI              shift and go to state 6
+    HR              shift and go to state 2
+    BR              shift and go to state 4
+    STRONG          shift and go to state 5
+    IMG             shift and go to state 10
+    ALEFT           shift and go to state 1
+    TEXT            shift and go to state 3
+
+    term                           shift and go to state 14
+    letter                         shift and go to state 11
+    segment                        shift and go to state 67
+    factor                         shift and go to state 7
     expression                     shift and go to state 18
 
 state 55
 
-    (8) subsubseg -> subsubseg TABTABSTAR . segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
-
-    CR              shift and go to state 12
-    H1              shift and go to state 17
-    H2              shift and go to state 15
-    H3              shift and go to state 16
-    LI              shift and go to state 6
-    HR              shift and go to state 2
-    BR              shift and go to state 4
-    STRONG          shift and go to state 5
-    IMG             shift and go to state 10
-    ALEFT           shift and go to state 1
-    TEXT            shift and go to state 3
-
-    term                           shift and go to state 14
-    segment                        shift and go to state 67
-    letter                         shift and go to state 11
-    factor                         shift and go to state 7
-    expression                     shift and go to state 18
-
-state 56
-
     (4) statement -> statement MULICODE segment MULICODE . segment
-    (9) segment -> . expression
-    (10) segment -> . segment CR ARIGHT list CR ARIGHT list
-    (11) segment -> . segment CR expression
-    (12) segment -> . segment CR
-    (13) segment -> . CR expression
-    (14) segment -> . CR
-    (17) expression -> . H1 factor
-    (18) expression -> . H2 factor
-    (19) expression -> . H3 factor
-    (20) expression -> . LI factor
-    (21) expression -> . HR
-    (22) expression -> . BR
-    (23) expression -> . factor
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (10) segment -> . expression
+    (11) segment -> . segment CR ARIGHT list CR ARIGHT list
+    (12) segment -> . segment CR expression
+    (13) segment -> . segment CR
+    (14) segment -> . CR expression
+    (15) segment -> . CR
+    (18) expression -> . H1 factor
+    (19) expression -> . H2 factor
+    (20) expression -> . H3 factor
+    (21) expression -> . LI factor
+    (22) expression -> . HR
+    (23) expression -> . BR
+    (24) expression -> . factor
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     CR              shift and go to state 12
     H1              shift and go to state 17
@@ -1124,151 +1108,162 @@ state 56
     factor                         shift and go to state 7
     expression                     shift and go to state 18
 
-state 57
+state 56
 
-    (29) factor -> IMG ATITLELEFT term ATITLERIGHT . ALINKLEFT term ALINKRIGHT
+    (30) factor -> IMG ATITLELEFT term ATITLERIGHT . ALINKLEFT term ALINKRIGHT
 
     ALINKLEFT       shift and go to state 69
 
 
+state 57
+
+    (17) list -> HR .
+
+    CR              reduce using rule 17 (list -> HR .)
+    EM              reduce using rule 17 (list -> HR .)
+    MULICODE        reduce using rule 17 (list -> HR .)
+    $end            reduce using rule 17 (list -> HR .)
+    TABSTAR         reduce using rule 17 (list -> HR .)
+    TABTABSTAR      reduce using rule 17 (list -> HR .)
+
+
 state 58
 
-    (16) list -> HR .
-
-    CR              reduce using rule 16 (list -> HR .)
-    EM              reduce using rule 16 (list -> HR .)
-    MULICODE        reduce using rule 16 (list -> HR .)
-    $end            reduce using rule 16 (list -> HR .)
-    TABTABSTAR      reduce using rule 16 (list -> HR .)
-    TABSTAR         reduce using rule 16 (list -> HR .)
-
-
-state 59
-
-    (10) segment -> segment CR ARIGHT list . CR ARIGHT list
+    (11) segment -> segment CR ARIGHT list . CR ARIGHT list
 
     CR              shift and go to state 70
 
 
-state 60
+state 59
 
-    (15) list -> factor .
-    (24) factor -> factor . STRONG term STRONG term
-    (26) factor -> factor . EM term EM term
-    (27) factor -> factor . CODE term CODE term
-    (28) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (30) factor -> factor . CODE EM term EM CODE term
+    (16) list -> factor .
+    (25) factor -> factor . STRONG term STRONG term
+    (27) factor -> factor . EM term EM term
+    (28) factor -> factor . CODE term CODE term
+    (29) factor -> factor . ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (31) factor -> factor . CODE EM term EM CODE term
 
   ! shift/reduce conflict for EM resolved as shift
-    CR              reduce using rule 15 (list -> factor .)
-    MULICODE        reduce using rule 15 (list -> factor .)
-    $end            reduce using rule 15 (list -> factor .)
-    TABTABSTAR      reduce using rule 15 (list -> factor .)
-    TABSTAR         reduce using rule 15 (list -> factor .)
+    CR              reduce using rule 16 (list -> factor .)
+    MULICODE        reduce using rule 16 (list -> factor .)
+    $end            reduce using rule 16 (list -> factor .)
+    TABSTAR         reduce using rule 16 (list -> factor .)
+    TABTABSTAR      reduce using rule 16 (list -> factor .)
     STRONG          shift and go to state 25
     EM              shift and go to state 22
     CODE            shift and go to state 23
     ATITLELEFT      shift and go to state 24
 
-  ! EM              [ reduce using rule 15 (list -> factor .) ]
+  ! EM              [ reduce using rule 16 (list -> factor .) ]
+
+
+state 60
+
+    (27) factor -> factor EM term EM term .
+
+    STRONG          reduce using rule 27 (factor -> factor EM term EM term .)
+    EM              reduce using rule 27 (factor -> factor EM term EM term .)
+    CODE            reduce using rule 27 (factor -> factor EM term EM term .)
+    ATITLELEFT      reduce using rule 27 (factor -> factor EM term EM term .)
+    CR              reduce using rule 27 (factor -> factor EM term EM term .)
+    MULICODE        reduce using rule 27 (factor -> factor EM term EM term .)
+    $end            reduce using rule 27 (factor -> factor EM term EM term .)
+    TABSTAR         reduce using rule 27 (factor -> factor EM term EM term .)
+    TABTABSTAR      reduce using rule 27 (factor -> factor EM term EM term .)
 
 
 state 61
 
-    (26) factor -> factor EM term EM term .
-
-    STRONG          reduce using rule 26 (factor -> factor EM term EM term .)
-    EM              reduce using rule 26 (factor -> factor EM term EM term .)
-    CODE            reduce using rule 26 (factor -> factor EM term EM term .)
-    ATITLELEFT      reduce using rule 26 (factor -> factor EM term EM term .)
-    CR              reduce using rule 26 (factor -> factor EM term EM term .)
-    TABTABSTAR      reduce using rule 26 (factor -> factor EM term EM term .)
-    TABSTAR         reduce using rule 26 (factor -> factor EM term EM term .)
-    MULICODE        reduce using rule 26 (factor -> factor EM term EM term .)
-    $end            reduce using rule 26 (factor -> factor EM term EM term .)
-
-
-state 62
-
-    (30) factor -> factor CODE EM term EM . CODE term
+    (31) factor -> factor CODE EM term EM . CODE term
 
     CODE            shift and go to state 71
 
 
+state 62
+
+    (28) factor -> factor CODE term CODE term .
+
+    STRONG          reduce using rule 28 (factor -> factor CODE term CODE term .)
+    EM              reduce using rule 28 (factor -> factor CODE term CODE term .)
+    CODE            reduce using rule 28 (factor -> factor CODE term CODE term .)
+    ATITLELEFT      reduce using rule 28 (factor -> factor CODE term CODE term .)
+    CR              reduce using rule 28 (factor -> factor CODE term CODE term .)
+    MULICODE        reduce using rule 28 (factor -> factor CODE term CODE term .)
+    $end            reduce using rule 28 (factor -> factor CODE term CODE term .)
+    TABSTAR         reduce using rule 28 (factor -> factor CODE term CODE term .)
+    TABTABSTAR      reduce using rule 28 (factor -> factor CODE term CODE term .)
+
+
 state 63
 
-    (27) factor -> factor CODE term CODE term .
-
-    STRONG          reduce using rule 27 (factor -> factor CODE term CODE term .)
-    EM              reduce using rule 27 (factor -> factor CODE term CODE term .)
-    CODE            reduce using rule 27 (factor -> factor CODE term CODE term .)
-    ATITLELEFT      reduce using rule 27 (factor -> factor CODE term CODE term .)
-    CR              reduce using rule 27 (factor -> factor CODE term CODE term .)
-    TABTABSTAR      reduce using rule 27 (factor -> factor CODE term CODE term .)
-    TABSTAR         reduce using rule 27 (factor -> factor CODE term CODE term .)
-    MULICODE        reduce using rule 27 (factor -> factor CODE term CODE term .)
-    $end            reduce using rule 27 (factor -> factor CODE term CODE term .)
-
-
-state 64
-
-    (28) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT . term ALINKRIGHT term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (29) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT . term ALINKRIGHT term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
     term                           shift and go to state 72
     letter                         shift and go to state 11
 
+state 64
+
+    (25) factor -> factor STRONG term STRONG term .
+
+    STRONG          reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    EM              reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    CODE            reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    ATITLELEFT      reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    CR              reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    MULICODE        reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    $end            reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    TABSTAR         reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+    TABTABSTAR      reduce using rule 25 (factor -> factor STRONG term STRONG term .)
+
+
 state 65
 
-    (24) factor -> factor STRONG term STRONG term .
+    (6) subseg -> subseg TABSTAR subsubseg .
+    (8) subsubseg -> subsubseg . TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg
 
-    STRONG          reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    EM              reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    CODE            reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    ATITLELEFT      reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    CR              reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    TABTABSTAR      reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    TABSTAR         reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    MULICODE        reduce using rule 24 (factor -> factor STRONG term STRONG term .)
-    $end            reduce using rule 24 (factor -> factor STRONG term STRONG term .)
+    CR              reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
+    TABSTAR         reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
+    TABTABSTAR      shift and go to state 73
 
 
 state 66
 
-    (6) subseg -> subseg TABSTAR subsubseg .
-    (8) subsubseg -> subsubseg . TABTABSTAR segment
+    (7) subsubseg -> segment .
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
-    TABSTAR         reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
-    EM              reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
-    MULICODE        reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
-    $end            reduce using rule 6 (subseg -> subseg TABSTAR subsubseg .)
-    TABTABSTAR      shift and go to state 55
+  ! shift/reduce conflict for CR resolved as shift
+    TABTABSTAR      reduce using rule 7 (subsubseg -> segment .)
+    TABSTAR         reduce using rule 7 (subsubseg -> segment .)
+    CR              shift and go to state 30
+
+  ! CR              [ reduce using rule 7 (subsubseg -> segment .) ]
 
 
 state 67
 
-    (8) subsubseg -> subsubseg TABTABSTAR segment .
-    (10) segment -> segment . CR ARIGHT list CR ARIGHT list
-    (11) segment -> segment . CR expression
-    (12) segment -> segment . CR
+    (3) statement -> statement EM subseg CR segment .
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
-    TABTABSTAR      reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR segment .)
-    TABSTAR         reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR segment .)
-    EM              reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR segment .)
-    MULICODE        reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR segment .)
-    $end            reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR segment .)
+    EM              reduce using rule 3 (statement -> statement EM subseg CR segment .)
+    MULICODE        reduce using rule 3 (statement -> statement EM subseg CR segment .)
+    $end            reduce using rule 3 (statement -> statement EM subseg CR segment .)
     CR              shift and go to state 30
 
 
 state 68
 
     (4) statement -> statement MULICODE segment MULICODE segment .
-    (10) segment -> segment . CR ARIGHT list CR ARIGHT list
-    (11) segment -> segment . CR expression
-    (12) segment -> segment . CR
+    (11) segment -> segment . CR ARIGHT list CR ARIGHT list
+    (12) segment -> segment . CR expression
+    (13) segment -> segment . CR
 
     EM              reduce using rule 4 (statement -> statement MULICODE segment MULICODE segment .)
     MULICODE        reduce using rule 4 (statement -> statement MULICODE segment MULICODE segment .)
@@ -1278,141 +1273,233 @@ state 68
 
 state 69
 
-    (29) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT . term ALINKRIGHT
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (30) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT . term ALINKRIGHT
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 73
+    term                           shift and go to state 74
     letter                         shift and go to state 11
 
 state 70
 
-    (10) segment -> segment CR ARIGHT list CR . ARIGHT list
+    (11) segment -> segment CR ARIGHT list CR . ARIGHT list
 
-    ARIGHT          shift and go to state 74
+    ARIGHT          shift and go to state 75
 
 
 state 71
 
-    (30) factor -> factor CODE EM term EM CODE . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (31) factor -> factor CODE EM term EM CODE . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
     TEXT            shift and go to state 3
 
-    term                           shift and go to state 75
+    term                           shift and go to state 76
     letter                         shift and go to state 11
 
 state 72
 
-    (28) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term . ALINKRIGHT term
-
-    ALINKRIGHT      shift and go to state 76
-
-
-state 73
-
-    (29) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term . ALINKRIGHT
+    (29) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term . ALINKRIGHT term
 
     ALINKRIGHT      shift and go to state 77
 
 
-state 74
+state 73
 
-    (10) segment -> segment CR ARIGHT list CR ARIGHT . list
-    (15) list -> . factor
-    (16) list -> . HR
-    (24) factor -> . factor STRONG term STRONG term
-    (25) factor -> . STRONG term STRONG term
-    (26) factor -> . factor EM term EM term
-    (27) factor -> . factor CODE term CODE term
-    (28) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
-    (29) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
-    (30) factor -> . factor CODE EM term EM CODE term
-    (31) factor -> . ALEFT term ARIGHT
-    (32) factor -> . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (8) subsubseg -> subsubseg TABTABSTAR . subsubsubseg CR TABTABSTAR subsubsubseg
+    (9) subsubsubseg -> . list
+    (16) list -> . factor
+    (17) list -> . HR
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    HR              shift and go to state 58
+    HR              shift and go to state 57
     STRONG          shift and go to state 5
     IMG             shift and go to state 10
     ALEFT           shift and go to state 1
     TEXT            shift and go to state 3
 
-    list                           shift and go to state 78
     term                           shift and go to state 14
+    list                           shift and go to state 78
     letter                         shift and go to state 11
-    factor                         shift and go to state 60
+    factor                         shift and go to state 59
+    subsubsubseg                   shift and go to state 79
+
+state 74
+
+    (30) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term . ALINKRIGHT
+
+    ALINKRIGHT      shift and go to state 80
+
 
 state 75
 
-    (30) factor -> factor CODE EM term EM CODE term .
+    (11) segment -> segment CR ARIGHT list CR ARIGHT . list
+    (16) list -> . factor
+    (17) list -> . HR
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    STRONG          reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    EM              reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    CODE            reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    ATITLELEFT      reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    CR              reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    TABTABSTAR      reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    TABSTAR         reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    MULICODE        reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
-    $end            reduce using rule 30 (factor -> factor CODE EM term EM CODE term .)
+    HR              shift and go to state 57
+    STRONG          shift and go to state 5
+    IMG             shift and go to state 10
+    ALEFT           shift and go to state 1
+    TEXT            shift and go to state 3
 
+    list                           shift and go to state 81
+    term                           shift and go to state 14
+    letter                         shift and go to state 11
+    factor                         shift and go to state 59
 
 state 76
 
-    (28) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT . term
-    (33) term -> . letter
-    (34) letter -> . TEXT
+    (31) factor -> factor CODE EM term EM CODE term .
 
-    TEXT            shift and go to state 3
+    STRONG          reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    EM              reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    CODE            reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    ATITLELEFT      reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    CR              reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    MULICODE        reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    $end            reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    TABSTAR         reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
+    TABTABSTAR      reduce using rule 31 (factor -> factor CODE EM term EM CODE term .)
 
-    term                           shift and go to state 79
-    letter                         shift and go to state 11
 
 state 77
 
-    (29) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .
+    (29) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
 
-    STRONG          reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    EM              reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    CODE            reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    ATITLELEFT      reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    CR              reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    TABTABSTAR      reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    TABSTAR         reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    MULICODE        reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
-    $end            reduce using rule 29 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    TEXT            shift and go to state 3
 
+    term                           shift and go to state 82
+    letter                         shift and go to state 11
 
 state 78
 
-    (10) segment -> segment CR ARIGHT list CR ARIGHT list .
+    (9) subsubsubseg -> list .
 
-    CR              reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
-    EM              reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
-    MULICODE        reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
-    $end            reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
-    TABTABSTAR      reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
-    TABSTAR         reduce using rule 10 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    TABTABSTAR      reduce using rule 9 (subsubsubseg -> list .)
+    CR              reduce using rule 9 (subsubsubseg -> list .)
+    TABSTAR         reduce using rule 9 (subsubsubseg -> list .)
 
 
 state 79
 
-    (28) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .
+    (8) subsubseg -> subsubseg TABTABSTAR subsubsubseg . CR TABTABSTAR subsubsubseg
 
-    STRONG          reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    EM              reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    CODE            reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    ATITLELEFT      reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    CR              reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    TABTABSTAR      reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    TABSTAR         reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    MULICODE        reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
-    $end            reduce using rule 28 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    CR              shift and go to state 83
+
+
+state 80
+
+    (30) factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .
+
+    STRONG          reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    EM              reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    CODE            reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    ATITLELEFT      reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    CR              reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    MULICODE        reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    $end            reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    TABSTAR         reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+    TABTABSTAR      reduce using rule 30 (factor -> IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT .)
+
+
+state 81
+
+    (11) segment -> segment CR ARIGHT list CR ARIGHT list .
+
+    CR              reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    EM              reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    MULICODE        reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    $end            reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    TABSTAR         reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+    TABTABSTAR      reduce using rule 11 (segment -> segment CR ARIGHT list CR ARIGHT list .)
+
+
+state 82
+
+    (29) factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .
+
+    STRONG          reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    EM              reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    CODE            reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    ATITLELEFT      reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    CR              reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    MULICODE        reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    $end            reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    TABSTAR         reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+    TABTABSTAR      reduce using rule 29 (factor -> factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term .)
+
+
+state 83
+
+    (8) subsubseg -> subsubseg TABTABSTAR subsubsubseg CR . TABTABSTAR subsubsubseg
+
+    TABTABSTAR      shift and go to state 84
+
+
+state 84
+
+    (8) subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR . subsubsubseg
+    (9) subsubsubseg -> . list
+    (16) list -> . factor
+    (17) list -> . HR
+    (25) factor -> . factor STRONG term STRONG term
+    (26) factor -> . STRONG term STRONG term
+    (27) factor -> . factor EM term EM term
+    (28) factor -> . factor CODE term CODE term
+    (29) factor -> . factor ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT term
+    (30) factor -> . IMG ATITLELEFT term ATITLERIGHT ALINKLEFT term ALINKRIGHT
+    (31) factor -> . factor CODE EM term EM CODE term
+    (32) factor -> . ALEFT term ARIGHT
+    (33) factor -> . term
+    (34) term -> . letter
+    (35) letter -> . TEXT
+
+    HR              shift and go to state 57
+    STRONG          shift and go to state 5
+    IMG             shift and go to state 10
+    ALEFT           shift and go to state 1
+    TEXT            shift and go to state 3
+
+    term                           shift and go to state 14
+    list                           shift and go to state 78
+    letter                         shift and go to state 11
+    factor                         shift and go to state 59
+    subsubsubseg                   shift and go to state 85
+
+state 85
+
+    (8) subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg .
+
+    TABTABSTAR      reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg .)
+    CR              reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg .)
+    TABSTAR         reduce using rule 8 (subsubseg -> subsubseg TABTABSTAR subsubsubseg CR TABTABSTAR subsubsubseg .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -1422,4 +1509,6 @@ WARNING: shift/reduce conflict for EM in state 21 resolved as shift
 WARNING: shift/reduce conflict for EM in state 31 resolved as shift
 WARNING: shift/reduce conflict for EM in state 32 resolved as shift
 WARNING: shift/reduce conflict for EM in state 33 resolved as shift
-WARNING: shift/reduce conflict for EM in state 60 resolved as shift
+WARNING: shift/reduce conflict for CR in state 42 resolved as shift
+WARNING: shift/reduce conflict for EM in state 59 resolved as shift
+WARNING: shift/reduce conflict for CR in state 66 resolved as shift
