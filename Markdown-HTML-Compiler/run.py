@@ -33,7 +33,7 @@ t_TABTABSTAR     = r'\t\t\*'
 
 
 def t_TEXT(t):
-    r'[a-zA-Z0-9\.\, \'\"\:\/]+'
+    r'[a-zA-Z0-9\.\, \'\"\:\/\@\;\}\{]+'
     t.value = str(t.value)
     return t
 
@@ -237,5 +237,5 @@ import ply.yacc as yacc
 yacc.yacc()
 
 if __name__ == '__main__':
-    filename = '../TestDocument/test03.md'
+    filename = '../TestDocument/test.md'
     yacc.parse(open(filename).read())
