@@ -37,7 +37,7 @@ def t_TEXT(t):
     t.value = str(t.value)
     return t
 
-# t_ignore = " \t"
+
 
 def t_CR(t):
     r'\n+'
@@ -62,11 +62,7 @@ names = {}
 def p_body(p):
     '''body : statement'''
 
-    # print("printtttttt")
-    # for x in p:
-    #     print(x)
-    # print("printtttttt")
-    htmlDom = '<body>' + p[1] + '</body>'
+    htmlDom = '<head>' + '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" type="text/css" media="screen" />' + '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>' + '</head>' + '<body onload="prettyPrint()">' + p[1] + '</body>'
     f = file('output.html','w')
     f.write(htmlDom)
     f.close()
@@ -79,13 +75,12 @@ def p_state_segment(p):
                  | statement MULICODE segment MULICODE segment'''
     if len(p) == 2:
         p[0] = str(p[1])
-    # if len(p) == 4:
-    #     p[0] = str(p[1]) + '<ul>' + '<li>' + str(p[3]) + '</ul>'
+ 
     if len(p) == 6:
         if str(p[2]) == '*':
             p[0] = str(p[1]) + '<ul>' + '<li>' + str(p[3]) + '</ul>' + str(p[5])
         else:
-            p[0] = str(p[1]) + '<code>' + str(p[3]) + '</code>' + str(p[5])
+            p[0] = str(p[1]) + '<code class="prettyprint linenums">' + str(p[3]) + '</code>' + str(p[5])
     if len(p) == 9:
         p[0] = str(p[1]).replace("<br>","") + '<ul>' + '<li>' + str(p[3]).replace("<p>","").replace("</p>","") + '</li>' + '<li>' + str(p[6]).replace("<p>","").replace("</p>","") + '</li>' + '</ul>' + '</ol>' + str(p[8])
 
@@ -121,13 +116,6 @@ def p_state(p):
                  | segment CR
                  | CR expression
                  | CR'''
-
-
-    # print("printtttttt")
-    # for x in p:
-    #     print(x)
-    # print("printtttttt")
-
     
     if (len(p)==2):
         p[0] = str(p[1])
@@ -148,10 +136,7 @@ def p_list_cr(p):
     '''list : factor
             | HR'''
     if (len(p) == 2):
-        # print("printtttttt")
-        # for x in p:
-        #     print(x)
-        # print("printtttttt")
+
         if p[1] == '---' or p[1] == '* * *':
             p[0] = '<hr></hr>'
         else:
@@ -168,14 +153,6 @@ def p_exp_cr(p):
                   | BR
                   | factor'''
 
-
-    # print("printtttttt")
-    # for x in p:
-    #     print(x)
-    # print("printtttttt")
-
-    # if (len(p) == 7):
-    #     p[0] = '<hr></hr>'
     if (len(p) == 2):
         if p[1] == '---' or p[1] == '* * *':
             p[0] = '<hr></hr>'
@@ -211,11 +188,7 @@ def p_factor_term(p):
               | factor CODE EM term EM CODE term
               | ALEFT term ARIGHT
               | term'''
-    
-    # print("printtttttt")
-    # for x in p:
-    #     print(x)
-    # print("printtttttt")
+
 
     if (len(p) == 2):
         p[0] = str(p[1])
